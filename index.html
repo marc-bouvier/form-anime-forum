@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="static/bootstrap.min.css" rel="stylesheet">
+    <script src="static/jquery-3.2.1.js"></script>
+    <script src="static/jsrender.min.js"></script>
+    <script src="static/jsviews.min.js"></script>
+    <script src="static/bootstrap.min.js"></script>
+    <script src="static/clipboard.min.js"></script>
+</head>
+
+<body>
+    <div id="animeData" class="container">
+
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Form</h2>
+                <div class="form-group">
+                    <label>Titre</label>
+                    <input type="text" data-link="title" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Résumé</label>
+                    <textarea data-link="summary" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Genre</label>
+                    <input type="text" data-link="genre" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Année</label>
+                    <input type="text" data-link="year" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Image</label>
+                    <input type="text" data-link="picture" class="form-control" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h2>Preview</h2>
+                <table class="table table-stripped">
+                    <tbody>
+                        <tr data-link="visible{:title}">
+                            <th>Titre</th>
+                            <td><span data-link="title"></span></td>
+                        </tr>
+
+                        <tr data-link="visible{:genre}">
+                            <th>Genre</th>
+                            <td><span data-link="genre"></span></td>
+                        </tr>
+                        <tr data-link="visible{:summary}">
+                            <th>Résumé</th>
+                            <td><span data-link="summary"></span></td>
+                        </tr>
+
+                        <tr data-link="visible{:year}">
+                            <th>Année</th>
+                            <td><span data-link="year"></span></td>
+                        </tr>
+                        <tr data-link="visible{:picture}">
+                            <th>Image</th>
+                            <td><img data-link="src{:picture}" style="width:240px"></img>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>HTML</h2>
+                <button class="btnCopy" data-clipboard-target="#generatedHtml">Copier
+</button>
+                <pre>
+                <code>
+                    <div id="generatedHtml">
+                &lt;table&gt;
+                    &lt;tbody&gt;   
+                        <span data-link="visible{:title}">&lt;tr&gt; 
+                            &lt;th&gt;Titre&lt;/th&gt;
+                            &lt;td&gt;<span data-link="title"></span>&lt;/td&gt;
+                        &lt;/tr&gt;</span>
+                        <span data-link="visible{:genre}">&lt;tr&gt; 
+                            &lt;th&gt;Genre&lt;/th&gt;
+                            &lt;td&gt;<span data-link="genre"></span>&lt;/td&gt;
+                        &lt;/tr&gt;</span>
+                        <span data-link="visible{:summary}">&lt;tr&gt; 
+                            &lt;th&gt;Résumé&lt;/th&gt;
+                            &lt;td&gt;<span data-link="summary"></span>&lt;/td&gt;
+                        &lt;/tr&gt;</span>
+                        <span data-link="visible{:year}">&lt;tr&gt; 
+                            &lt;th&gt;Année&lt;/th&gt;
+                            &lt;td&gt;<span data-link="year"></span>&lt;/td&gt;
+                        &lt;/tr&gt;</span>
+                        <span data-link="visible{:picture}">&lt;tr&gt; 
+                            &lt;th&gt;&lt;/th&gt;
+                            &lt;td&gt;&lt;img src="<span data-link="picture"></span>"  style="width:240px"&gt;&lt;/img&gt;&lt;/td&gt;
+                        &lt;/tr&gt;</span>
+                    &lt;/tbody&gt;
+                &lt;/table&gt;
+                    </div>
+                </pre>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        var data = {
+            "title": "",
+            "year": "",
+            "genre": "",
+            "summary": "",
+            "picture": "static/placeholder.png"
+        };
+        $("#animeData").link(true, data);
+        var clipboard = new Clipboard('.btnCopy');
+    </script>
+</body>
+
+</html>

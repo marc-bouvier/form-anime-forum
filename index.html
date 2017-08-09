@@ -19,53 +19,151 @@
             <div class="col-md-6">
                 <h2>Form</h2>
                 <div class="form-group">
-                    <label>Titre</label>
+                    <label>Nom de l'anime</label>
                     <input type="text" data-link="title" class="form-control" />
                 </div>
                 <div class="form-group">
-                    <label>Résumé</label>
-                    <textarea data-link="summary" class="form-control"></textarea>
+                    <label>Lien de l'image de l'anime</label>
+                    <input type="text" data-link="picture" class="form-control" />
                 </div>
                 <div class="form-group">
-                    <label>Genre</label>
+                    <label>Origine</label>
+                    <select type="text" data-link="origin" class="form-control">
+                        <option value="indisponible">Faites un choix</option>
+                        <option value="Autre">Autre</option>
+                        <option value="Comic">Comic</option>
+                        <option value="Drama">Drama</option>
+                        <option value="Jeu vidéo">Jeu vidéo</option>
+                        <option value="Light novel">Light novel</option>
+                        <option value="Manga">Manga</option>
+                        <option value="Roman">Roman</option>
+                        <option value="Œuvre originale">Œuvre originale</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Catégorie</label>
+                    <select data-link="category" class="form-control">
+                        <option value="indisponible">Faites un choix</option>
+                        <option value="TV">TV</option>
+                        <option value="TV Spécial">TV Spécial</option>
+                        <option value="OAV">OAV</option>
+                        <option value="Film">Film</option>
+                        <option value="ONA">ONA</option>
+                        <option value="OAD">OAD</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Genre(s)</label>
                     <input type="text" data-link="genre" class="form-control" />
                 </div>
                 <div class="form-group">
-                    <label>Année</label>
-                    <input type="text" data-link="year" class="form-control" />
+                    <label>Thème(s)</label>
+                    <input type="text" data-link="theme" class="form-control" />
                 </div>
                 <div class="form-group">
-                    <label>Image</label>
-                    <input type="text" data-link="picture" class="form-control" />
+                    <label>Public visé</label>
+                    <select data-link="targetedAudience" class="form-control">
+                        <option value="indisponible">Faites un choix</option>
+                        <option value="Seinen">Seinen</option>
+                        <option value="Shônen">Shônen</option>
+                        <option value="Josei">Josei</option>
+                        <option value="Shôjo">Shôjo</option>
+                        <option value="Kodomo">Kodomo</option>
+                        <option value="Yaoi">Yaoi</option>
+                        <option value="Yuri">Yuri</option>
+                        <option value="Tout public">Tout public</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Nombre d'épisodes</label>
+                    <input type="number" data-link="episodeNumber" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Durée d'un épisode</label>
+                    <input type="text" data-link="episodeDuration" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Année de production</label>
+                    <input type="number" data-link="year" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Diffusion</label>
+                    <input type="radio" data-link="diffusion" value="En cours" name="ifended" id="ifended"> En cours
+                    <input type="radio" data-link="diffusion" value="Terminée" name="ifended" id="ifended"> Terminée
+                </div>
+
+                <div class="form-group">
+                    <label>Studio(s) d'animation</label>
+                    <input type="text" data-link="studioAnimation" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Histoire</label>
+                    <textarea data-link="summary" class="form-control"></textarea>
                 </div>
             </div>
             <div class="col-md-6">
                 <h2>Preview</h2>
                 <table class="table table-stripped">
                     <tbody>
-                        <tr data-link="visible{:title}">
+                        <tr>
                             <th>Titre</th>
                             <td><span data-link="title"></span></td>
                         </tr>
-
-                        <tr data-link="visible{:genre}">
-                            <th>Genre</th>
-                            <td><span data-link="genre"></span></td>
-                        </tr>
-                        <tr data-link="visible{:summary}">
-                            <th>Résumé</th>
-                            <td><span data-link="summary"></span></td>
-                        </tr>
-
-                        <tr data-link="visible{:year}">
-                            <th>Année</th>
-                            <td><span data-link="year"></span></td>
-                        </tr>
                         <tr data-link="visible{:picture}">
-                            <th>Image</th>
-                            <td><img data-link="src{:picture}" style="width:240px"></img>
+                            <td colspan="2"><img data-link="src{:picture} alt{:title}" style="width:240px"></img>
                             </td>
                         </tr>
+                        <tr>
+                            <th>Origine</th>
+                            <td><span data-link="origin||'indisponible'"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Catégorie</th>
+                            <td><span data-link="category||'indisponible'"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Genre(s)</th>
+                            <td>
+                                <span data-link="genre||'indisponible'"></span>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Thème(s)</th>
+                            <td><span data-link="theme||'indisponible'"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Public visé</th>
+                            <td><span data-link="targetedAudience||'indisponible'"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Nombre d'épisodes</th>
+                            <td><span data-link="episodeNumber||'indisponible'"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Durée d'un épisode</th>
+                            <td><span data-link="episodeDuration||'indisponible'"></span></td>
+                        </tr>
+
+                        <tr>
+                            <th>Année de production</th>
+                            <td><span data-link="year||'indisponible'"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Diffusion</th>
+                            <td><span data-link="diffusion||'indisponible'"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Studion d'animation</th>
+                            <td><span data-link="studioAnimation||'indisponible'"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Histoire</th>
+                            <td><span data-link="summary||'indisponible'"></span></td>
+                        </tr>
+
+
                     </tbody>
                 </table>
             </div>
@@ -79,27 +177,57 @@
                 <code>
                     <div id="generatedHtml">
                 &lt;table&gt;
-                    &lt;tbody&gt;   
-                        <span data-link="visible{:title}">&lt;tr&gt; 
+                    &lt;tbody&gt;
+                        &lt;tr&gt; 
                             &lt;th&gt;Titre&lt;/th&gt;
                             &lt;td&gt;<span data-link="title"></span>&lt;/td&gt;
-                        &lt;/tr&gt;</span>
-                        <span data-link="visible{:genre}">&lt;tr&gt; 
-                            &lt;th&gt;Genre&lt;/th&gt;
-                            &lt;td&gt;<span data-link="genre"></span>&lt;/td&gt;
-                        &lt;/tr&gt;</span>
-                        <span data-link="visible{:summary}">&lt;tr&gt; 
-                            &lt;th&gt;Résumé&lt;/th&gt;
-                            &lt;td&gt;<span data-link="summary"></span>&lt;/td&gt;
-                        &lt;/tr&gt;</span>
-                        <span data-link="visible{:year}">&lt;tr&gt; 
-                            &lt;th&gt;Année&lt;/th&gt;
-                            &lt;td&gt;<span data-link="year"></span>&lt;/td&gt;
-                        &lt;/tr&gt;</span>
-                        <span data-link="visible{:picture}">&lt;tr&gt; 
-                            &lt;th&gt;&lt;/th&gt;
-                            &lt;td&gt;&lt;img src="<span data-link="picture"></span>"  style="width:240px"&gt;&lt;/img&gt;&lt;/td&gt;
-                        &lt;/tr&gt;</span>
+                        &lt;/tr&gt;
+                        &lt;tr&gt; 
+                            &lt;td colspan="2" &gt;&lt;img alt="<span data-link="title"></span>" src="<span data-link="picture"></span>"  style="width:240px"&gt;&lt;/img&gt;&lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt; 
+                            &lt;th&gt;Origine&lt;/th&gt;
+                            &lt;td&gt;<span data-link="origin||'indisponible'"></span>&lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt; 
+                            &lt;th&gt;Catégorie&lt;/th&gt;
+                            &lt;td&gt;<span data-link="category||'indisponible'"></span>&lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt; 
+                            &lt;th&gt;Genre(s)&lt;/th&gt;
+                            &lt;td&gt;<span data-link="genre||'indisponible'"></span>&lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt; 
+                            &lt;th&gt;Thème(s)&lt;/th&gt;
+                            &lt;td&gt;<span data-link="theme||'indisponible'"></span>&lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt; 
+                            &lt;th&gt;Public visé&lt;/th&gt;
+                            &lt;td&gt;<span data-link="targetedAudience||'indisponible'"></span>&lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt; 
+                            &lt;th&gt;Nombre d'épisodes&lt;/th&gt;
+                            &lt;td&gt;<span data-link="episodeNumber||'indisponible'"></span>&lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt; 
+                            &lt;th&gt;Durée d'un épisode&lt;/th&gt;
+                            &lt;td&gt;<span data-link="episodeDuration||'indisponible'"></span>&lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt; 
+                            &lt;th&gt;Année de production&lt;/th&gt;
+                            &lt;td&gt;<span data-link="year||'indisponible'"></span>&lt;/td&gt;
+                        &lt;/tr&gt;
+                            &lt;th&gt;Diffusion&lt;/th&gt;
+                            &lt;td&gt;<span data-link="diffusion||'indisponible'"></span>&lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt; 
+                            &lt;th&gt;Studio d'animation&lt;/th&gt;
+                            &lt;td&gt;<span data-link="studioAnimation||'indisponible'"></span>&lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt; 
+                            &lt;th&gt;Histoire&lt;/th&gt;
+                            &lt;td&gt;<span data-link="summary||'indisponible'"></span>&lt;/td&gt;
+                        &lt;/tr&gt;
                     &lt;/tbody&gt;
                 &lt;/table&gt;
                     </div>
@@ -114,7 +242,8 @@
             "year": "",
             "genre": "",
             "summary": "",
-            "picture": "static/placeholder.png"
+            "picture": "",
+            "episodeDuration": "XX mins"
         };
         $("#animeData").link(true, data);
         var clipboard = new Clipboard('.btnCopy');

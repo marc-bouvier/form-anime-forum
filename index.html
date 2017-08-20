@@ -12,19 +12,25 @@
 </head>
 
 <body>
-    <div id="animeData" style="display:flex">
 
-        <div style="width:50%">
+
+
+
+    <div id="animeData" style="display:flex">
+        <div id="formRender" style="width:50%">
             <h2>Form</h2>
             <table>
                 <tbody>
                     <tr>
                         <th><label>Nom de l'anime</label></th>
-                        <td><input type="text" data-link="title" /></td>
+                        <td><input type="text" data-link="title" />
+                        </td>
                     </tr>
+
                     <tr>
                         <th> <label>Lien de l'image de l'anime</label></th>
-                        <td> <input type="text" data-link="picture" /> </td>
+                        <td> <input type="text" data-link="picture" />
+                        </td>
                     </tr>
                     <tr>
                         <th> <label>Origine</label> </th>
@@ -58,11 +64,13 @@
                     </tr>
                     <tr>
                         <th><label>Genre(s)</label></th>
-                        <td><input type="text" data-link="genre" /></td>
+                        <td><input type="text" data-link="genre" />
+                        </td>
                     </tr>
                     <tr>
                         <th><label>Thème(s)</label></th>
-                        <td><input type="text" data-link="theme" /></td>
+                        <td><input type="text" data-link="theme" />
+                        </td>
                     </tr>
                     <tr>
                         <th><label>Public visé</label></th>
@@ -82,11 +90,13 @@
                     </tr>
                     <tr>
                         <th><label>Nombre d'épisodes</label></th>
-                        <td><input type="number" data-link="episodeNumber" /></td>
+                        <td><input type="number" data-link="episodeNumber" />
+                        </td>
                     </tr>
                     <tr>
                         <th><label>Durée d'un épisode (min)</label></th>
-                        <td> <input type="number" data-link="episodeDuration" /></td>
+                        <td> <input type="number" data-link="episodeDuration" />
+                        </td>
                     </tr>
                     <tr>
                         <th><label>Saison</label></th>
@@ -122,13 +132,14 @@
                     </tr>
                     <tr>
                         <th><label>Année de production</label></th>
-                        <td> <input type="number" data-link="yearProduction" /></td>
+                        <td> <input type="number" data-link="yearProduction" />
+                        </td>
                     </tr>
                     <tr>
                         <th> <label>Diffusion</label></th>
                         <td>
-                            <input type="radio" data-link="diffusionStatus" value="En cours" name="ifended" id="ifended"> En cours
-                            <input type="radio" data-link="diffusionStatus" value="Terminée" name="ifended" id="ifended"> Terminée
+                            <input type="radio" data-link="diffusionStatus" value="En cours" name="ifended" id="ifended" /> En cours
+                            <input type="radio" data-link="diffusionStatus" value="Terminée" name="ifended" id="ifended" /> Terminée
                         </td>
                     </tr>
                     <tr>
@@ -141,25 +152,52 @@
                         <th> <label>Histoire</label></th>
                         <td><textarea data-link="summary"></textarea></td>
                     </tr>
+                </tbody>
+            </table>
+
+            <span data-link="{for seasons tmpl='#formSeason'}"></span>
+            <button data-link="{on addSeason}">+</button><button data-link="{on removeSeason}">-</button>
+        </div>
+
+        <script id="formSeason" type="text/x-jsrender">
+            <table>
+                <tbody>
                     <tr>
-                        <th></th>
-                        <td></td>
+                        <th>Saison</th>
+                        <td><input data-link="label" /></td>
                     </tr>
                     <tr>
-                        <th></th>
-                        <td></td>
+                        <th>Score</th>
+                        <td><input data-link="score" /></td>
+                    </tr>
+                    <tr>
+                        <th>LD</th>
+                        <td><input data-link="linkLowDef" /></td>
+                    </tr>
+                    <tr>
+                        <th>720p</th>
+                        <td><input data-link="link720p" /></td>
+                    </tr>
+                    <tr>
+                        <th>1080p</th>
+                        <td><input data-link="link1080p" /></td>
+                    </tr>
+                    <tr>
+                        <th>Premium</th>
+                        <td><input data-link="linkPremium" /></td>
                     </tr>
                 </tbody>
             </table>
-        </div>
+            <br/>
+        </script>
 
-        <div style="width:50%">
+        <div id="previewRender" style="width:50%">
             <h2>Preview</h2>
 
             <div id="complements">
                 <p class="affiche">
                     <span data-link="visible{:picture}">
-                        <img data-link="src{:picture} alt{:title}"></img>
+                        <img data-link="src{:picture} alt{:title}"/>
                     </span>
                 </p>
             </div>
@@ -185,38 +223,75 @@
                     <b>Histoire</b> : <span data-link="summary||'Indisponible'"></span>
                 </p>
             </div>
-
             <table id="download">
                 <tbody>
-                    <tr>
-                        <td></td>
-                        <td>Score</td>
-                        <td>LD</td>
-                        <td>720p</td>
-                        <td>1080p</td>
-                        <td>Premium</td>
-                    </tr>
-                    <tr class="bold">
-                        <td>Saison 01 Vostfr</td>
-                        <td class="score">Indisponible</td>
-                        <td>Indisponible</td>
-                        <td>Indisponible</td>
-                        <td>Indisponible</td>
-                        <td>Indisponible</td>
-                    </tr>
-                </tbody>
+                    <thead>
+                        <tr>
+                            <td></td>
+                            <td>Score</td>
+                            <td>LD</td>
+                            <td>720p</td>
+                            <td>1080p</td>
+                            <td>Premium</td>
+                        </tr>
+                    </thead>
+                    <tbody data-link="{for seasons tmpl='#previewSeason'}" />
             </table>
 
         </div>
+
+        <script id="previewSeason" type="text/x-jsrender">
+            <tr class="bold">
+                <td><span data-link="label||'Indisponible'"></span></td>
+                <td class="score"><span data-link="score||'Indisponible'"></span></td>
+                <td>
+                    {^{if linkLowDef}}
+                    <a data-ipb="nomediaparse" target="_blank" data-link="href{:linkLowDef}">
+                        <img src="https://otaku-family.fr/public/logo-uptobox.png">
+                    </a>
+                    {{else}} Indisponible {{/if}}
+                </td>
+                <td>
+                    {^{if link720p}}
+                    <a data-ipb="nomediaparse" target="_blank" data-link="href{:link720p}">
+                        <img src="https://otaku-family.fr/public/logo-uptobox.png">
+                    </a>
+                    {{else}} Indisponible {{/if}}
+                </td>
+                <td>
+                    {^{if link1080p}}
+                    <a data-ipb="nomediaparse" target="_blank" data-link="href{:link1080p}">
+                        <img src="https://otaku-family.fr/public/logo-uptobox.png">
+                    </a>
+                    {{else}} Indisponible {{/if}}
+                </td>
+                <td>
+                    {^{if linkPremium}}
+                    <a data-ipb="nomediaparse" target="_blank" data-link="href{:linkPremium}">
+                        <img src="https://otaku-family.fr/public/logo-uptobox.png">
+                    </a>
+                    {{else}} Indisponible {{/if}}
+                </td>
+            </tr>
+        </script>
+        <!-- <span data-link="{if linkLowDef tmpl='#previewLinkUpToBox'}{else tmpl='Indisponible'}"></span> -->
+        <script id="previewLinkUpToBox" type="text/x-jsrender">
+            <a data-ipb="nomediaparse" target="_blank" data-link="href{:~root}">
+                <img src="https://otaku-family.fr/public/logo-uptobox.png">
+            </a>
+        </script>
     </div>
+
+
+
     <div id="animeCode">
         <h2>HTML</h2>
         <button class="btnCopy" data-clipboard-target="#generatedHtml">Copier</button>
-        <pre>
+        <pre id="generatedHtml">
             <code>
         &lt;div id="complements"&gt;
             &lt;p class="affiche"&gt;<span data-link="visible{:picture}">
-                &lt;img src="<span data-link="picture"></span>" alt="<span data-link="title"></span>" &gt;&lt;/img&gt;</span>
+                &lt;img src="<span data-link="picture"></span>" alt="<span data-link="title"></span>" /&gt;</span>
             &lt;/p&gt;
         &lt;/div&gt;
         &lt;div id="info"&gt;
@@ -250,21 +325,34 @@
                     &lt;td&gt;720p&lt;/td&gt;
                     &lt;td&gt;1080p&lt;/td&gt;
                     &lt;td&gt;Premium&lt;/td&gt;
-                &lt;/tr&gt;
-                &lt;tr class="bold"&gt;
-                    &lt;td&gt;Saison 01 Vostfr&lt;/td&gt;
-                    &lt;td class="score"&gt;Indisponible&lt;/td&gt;
-                    &lt;td&gt;Indisponible&lt;/td&gt;
-                    &lt;td&gt;Indisponible&lt;/td&gt;
-                    &lt;td&gt;Indisponible&lt;/td&gt;
-                    &lt;td&gt;Indisponible&lt;/td&gt;
-                &lt;/tr&gt;
+                &lt;/tr&gt;<span data-link="{for seasons tmpl='#htmlSeason'}"></span>
             &lt;/tbody&gt;
         &lt;/table&gt;
             </code>
         </pre>
+
     </div>
-    </div>
+
+    <script id="htmlSeason" type="text/x-jsrender"><pre>                &lt;tr class="bold"&gt;
+                    &lt;td&gt;<span data-link="label||'Indisponible'"></span>&lt;/td&gt;
+                    &lt;td class="score"&gt;<span data-link="score||'Indisponible'"></span>&lt;/td&gt;
+                    &lt;td&gt;{^{if linkLowDef}}
+                        &lt;a data-ipb="nomediaparse" target="_blank" <span data-link="href{:linkLowDef}" ></span>&gt;
+                            &lt;img src="https://otaku-family.fr/public/logo-uptobox.png"&gt;
+                        &lt;/a&gt;{{else}}Indisponible{{/if}}&lt;/td&gt;
+                    &lt;td&gt;{^{if link720p}}
+                        &lt;a data-ipb="nomediaparse" target="_blank" <span data-link="href{:link720p}"></span>&gt;
+                            &lt;img src="https://otaku-family.fr/public/logo-uptobox.png"&gt;
+                        &lt;/a&gt;{{else}}Indisponible{{/if}}&lt;/td&gt;
+                    &lt;td&gt; {^{if link1080p}}
+                        &lt;a data-ipb="nomediaparse" target="_blank" <span data-link="href{:link1080p}"></span>&gt;
+                            &lt;img src="https://otaku-family.fr/public/logo-uptobox.png"&gt;
+                        &lt;/a&gt;{{else}}Indisponible{{/if}}&lt;/td&gt;
+                    &lt;td&gt;{^{if linkPremium}}
+                        &lt;a data-ipb="nomediaparse" target="_blank" <span data-link="href{:linkPremium}"></span>&gt;
+                            &lt;img src="https://otaku-family.fr/public/logo-uptobox.png"&gt;
+                        &lt;/a&gt;{{else}}Indisponible{{/if}}&lt;/td&gt;
+                &lt;/tr&gt;</pre></script>
     <script>
         var data = {
             "title": "",
@@ -272,15 +360,23 @@
             "genre": "",
             "summary": "",
             "picture": "http://via.placeholder.com/225x330?text=Indisponible",
-            "download": [{
+            "seasons": [{
                 "label": "Saison 01"
-            }]
+            }],
+            "addSeason": function() {
+                $.observable(this.seasons).insert({});
+            },
+            "removeSeason": function() {
+                if (this.seasons.length > 1) {
+                    $.observable(this.seasons).remove();
+                }
+            }
+
         };
-        $("#animeData,#animeCode").link(true, data);
+        $.link(true, "#animeData,#animeCode", data);
+
         var clipboard = new Clipboard('.btnCopy');
     </script>
 </body>
-
-</html>
 
 </html>

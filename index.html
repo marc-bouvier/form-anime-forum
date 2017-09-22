@@ -242,28 +242,28 @@
                 <td class="score"><span data-link="score||'Indisponible'"></span></td>
                 <td>
                     {^{if linkLowDef}}
-                    <a data-ipb="nomediaparse" target="_blank" data-link="href{:linkLowDef}">
+                    <a data-ipb="nomediaparse" target="_blank" data-link="href{linkOtakuFamily:linkLowDef}">
                         <img src="https://otaku-family.fr/public/logo-uptobox.png">
                     </a>
                     {{else}} Indisponible {{/if}}
                 </td>
                 <td>
                     {^{if link720p}}
-                    <a data-ipb="nomediaparse" target="_blank" data-link="href{:link720p}">
+                    <a data-ipb="nomediaparse" target="_blank" data-link="href{linkOtakuFamily:link720p}">
                         <img src="https://otaku-family.fr/public/logo-uptobox.png">
                     </a>
                     {{else}} Indisponible {{/if}}
                 </td>
                 <td>
                     {^{if link1080p}}
-                    <a data-ipb="nomediaparse" target="_blank" data-link="href{:link1080p}">
+                    <a data-ipb="nomediaparse" target="_blank" data-link="href{linkOtakuFamily:link1080p}">
                         <img src="https://otaku-family.fr/public/logo-uptobox.png">
                     </a>
                     {{else}} Indisponible {{/if}}
                 </td>
                 <td>
                     {^{if linkPremium}}
-                    <a data-ipb="nomediaparse" target="_blank" data-link="href{:linkPremium}">
+                    <a data-ipb="nomediaparse" target="_blank" data-link="href{linkOtakuFamily:linkPremium}">
                         <img src="https://otaku-family.fr/public/logo-uptobox.png">
                     </a>
                     {{else}} Indisponible {{/if}}
@@ -333,23 +333,28 @@
                     &lt;td&gt;<span data-link="label||'Indisponible'"></span>&lt;/td&gt;
                     &lt;td class="score"&gt;<span data-link="score||'Indisponible'"></span>&lt;/td&gt;
                     &lt;td&gt;{^{if linkLowDef}}
-                        &lt;a data-ipb="nomediaparse" target="_blank" href="<span data-link="linkLowDef" ></span>"&gt;
+                        &lt;a data-ipb="nomediaparse" target="_blank" href="<span data-link="{linkOtakuFamily:linkLowDef}" ></span>"&gt;
                             &lt;img src="https://otaku-family.fr/public/logo-uptobox.png"&gt;
                         &lt;/a&gt;{{else}}Indisponible{{/if}}&lt;/td&gt;
                     &lt;td&gt;{^{if link720p}}
-                        &lt;a data-ipb="nomediaparse" target="_blank" href="<span data-link="link720p"></span>"&gt;
+                        &lt;a data-ipb="nomediaparse" target="_blank" href="<span data-link="{linkOtakuFamily:link720p}"></span>"&gt;
                             &lt;img src="https://otaku-family.fr/public/logo-uptobox.png"&gt;
                         &lt;/a&gt;{{else}}Indisponible{{/if}}&lt;/td&gt;
                     &lt;td&gt;{^{if link1080p}}
-                        &lt;a data-ipb="nomediaparse" target="_blank" href="<span data-link="link1080p"></span>"&gt;
+                        &lt;a data-ipb="nomediaparse" target="_blank" href="<span data-link="{linkOtakuFamily:link1080p}"></span>"&gt;
                             &lt;img src="https://otaku-family.fr/public/logo-uptobox.png"&gt;
                         &lt;/a&gt;{{else}}Indisponible{{/if}}&lt;/td&gt;
                     &lt;td&gt;{^{if linkPremium}}
-                        &lt;a data-ipb="nomediaparse" target="_blank" href="<span data-link="linkPremium"></span>"&gt;
+                        &lt;a data-ipb="nomediaparse" target="_blank" href="<span data-link="{linkOtakuFamily:linkPremium}"></span>"&gt;
                             &lt;img src="https://otaku-family.fr/public/logo-uptobox.png"&gt;
                         &lt;/a&gt;{{else}}Indisponible{{/if}}&lt;/td&gt;
                 &lt;/tr&gt;</pre></script>
     <script>
+        $.views.converters({
+            linkOtakuFamily: function(id) {
+                return "https://otaku-family.fr/public/parser.php?id=" + id
+            }
+        });
         var data = {
             "title": "",
             "year": "",

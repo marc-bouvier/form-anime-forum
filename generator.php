@@ -394,7 +394,7 @@
 		<script>
         $.views.converters({
             linkParser: function(id) {
-                return "https://otaku-family.fr/parser.php?acc_id=0" + id
+                return "https://otaku-family.fr/parser.php?acc_id=0&id=" + id
             }
         });
         var data = {

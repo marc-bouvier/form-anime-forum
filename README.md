@@ -1,6 +1,10 @@
 # form-anime-forum
 Générateur d'html pour inclure dans un forum
 
+* generator.php : générateur original (legacy) utilisant jsRender et jsView
+* generator-vuejs.php : nouveau générateur utilisant vue.js
+* icotaky-loader.php : permet de précharger une fiche à partir de icotaku
+
 ## TODO
 * Multi account
 * Reset bouton

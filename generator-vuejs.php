@@ -2,378 +2,379 @@
 <html>
 
 <head>
-  <meta charset="UTF-8">
-  <title>Otaku Family - Fiches</title>
-  <link rel="stylesheet" type="text/css" href="/uploads/ressources/generator.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i">
-  <link rel="shortcut icon" href="favicon.ico">
-  <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
-  
+    <meta charset="UTF-8">
+    <title>Otaku Family - Fiches</title>
+    <link rel="stylesheet" type="text/css" href="/uploads/ressources/generator.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i">
+    <link rel="shortcut icon" href="favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
+
 </head>
 
 <body>
 
+<div id="app">
 
+<!-- Loader -->
 
-		<!-- Loader -->
-	
-		<div class="animeCode">
-		<?php
+<div class="animeCode">
+    <?php
     include 'icotaku-loader.php';
     
 		if(isset($_POST['url']) && !empty($_POST['url'])){
       $infos = getIcotakuInfos($_POST['url']);
 		}
 		?>
-			<h2>Loader</h2>
-			<form action="" method="POST" class="form">
-				<input type="text" name="url" placeholder="URL Icotaku">
-				<button class="btnCopy">Charger les infos</button>
-			</form>
-		</div>
-		
-		<hr>
-		<hr>
-		
-		<!-- Form -->
-		
-  <div id="animeData">
+    <h2>Loader</h2>
+    <form action="" method="POST" class="form">
+        <input type="text" name="url" placeholder="URL Icotaku">
+        <button class="btnCopy">Charger les infos</button>
+    </form>
+</div>
+
+<hr/>
+<hr/>
+
+<!-- Form -->
+
+<div id="animeData">
     <div id="formRender">
-      <h2>Formulaire de fiche d'animé</h2>
-      <div id="form">
-        <table class="form">
-          <tbody>
-            <tr>
-              <th>
-                <label>Nom de l'anime</label>
-              </th>
-              <td>
-                <input type="text" v-model="title" />
-              </td>
-            </tr>
+        <h2>Formulaire de fiche d'animé</h2>
+        <div id="form">
+            <table class="form">
+                <tbody>
+                <tr>
+                    <th>
+                        <label>Nom de l'anime</label>
+                    </th>
+                    <td>
+                        <input type="text" v-model="title" />
+                    </td>
+                </tr>
 
-            <tr>
-              <th>
-                <label>Image de l'anime</label>
-              </th>
-              <td>
-                <input type="text" v-model="picture" />
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <label>Origine</label>
-              </th>
-              <td>
-                <select type="text" v-model="origin">
-                  <option value="Indisponible">Faites un choix</option>
-                  <option value="Autre">Autre</option>
-                  <option value="Comic">Comic</option>
-                  <option value="Drama">Drama</option>
-                  <option value="Jeu vidéo">Jeu vidéo</option>
-                  <option value="Light novel">Light novel</option>
-                  <option value="Manga">Manga</option>
-                  <option value="Multimédias">Multimédias</option>
-                  <option value="Roman">Roman</option>
-                  <option value="Œuvre originale">Œuvre originale</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <label>Catégorie</label>
-              </th>
-              <td>
-                <select v-model="category">
-                  <option value="Indisponible">Faites un choix</option>
-                  <option value="TV">TV</option>
-                  <option value="TV Spécial">TV Spécial</option>
-                  <option value="OAV">OAV</option>
-                  <option value="Film">Film</option>
-                  <option value="ONA">ONA</option>
-                  <option value="OAD">OAD</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <label>Genre(s)</label>
-              </th>
-              <td>
-                <input type="text" v-model="genre" />
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <label>Thème(s)</label>
-              </th>
-              <td>
-                <input type="text" v-model="theme" />
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <label>Public visé</label>
-              </th>
-              <td>
-                <select v-model="targetedAudience">
-                  <option value="Indisponible">Faites un choix</option>
-                  <option value="Seinen">Seinen</option>
-                  <option value="Shōnen">Shōnen</option>
-                  <option value="Josei">Josei</option>
-                  <option value="Shōjo">Shōjo</option>
-                  <option value="Kodomo">Kodomo</option>
-                  <option value="Yaoi">Yaoi</option>
-                  <option value="Yuri">Yuri</option>
-                  <option value="18+ - Hentai">Hentai</option>
-                  <option value="Tout public">Tout public</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <label>Nombre d'épisodes</label>
-              </th>
-              <td>
-                <input type="number" v-model="episodeNumber" />
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <label>Durée d'un épisode (min)</label>
-              </th>
-              <td>
-                <input type="number" v-model="episodeDuration" />
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <label>Saison</label>
-              </th>
-              <td>
-                <select v-model="firstDiffusionQuarter">
-                  <option value="Indisponible">Faites un choix</option>
-                  <option value="Printemps">Printemps</option>
-                  <option value="Été">Été</option>
-                  <option value="Automne">Automne</option>
-                  <option value="Hiver">Hiver</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <label>Année de production</label>
-              </th>
-              <td>
-                <input type="number" v-model="yearProduction" />
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <label>Diffusion</label>
-              </th>
+                <tr>
+                    <th>
+                        <label>Image de l'anime</label>
+                    </th>
+                    <td>
+                        <input type="text" v-model="picture" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label>Origine</label>
+                    </th>
+                    <td>
+                        <select type="text" v-model="origin">
+                            <option value="Indisponible">Faites un choix</option>
+                            <option value="Autre">Autre</option>
+                            <option value="Comic">Comic</option>
+                            <option value="Drama">Drama</option>
+                            <option value="Jeu vidéo">Jeu vidéo</option>
+                            <option value="Light novel">Light novel</option>
+                            <option value="Manga">Manga</option>
+                            <option value="Multimédias">Multimédias</option>
+                            <option value="Roman">Roman</option>
+                            <option value="Œuvre originale">Œuvre originale</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label>Catégorie</label>
+                    </th>
+                    <td>
+                        <select v-model="category">
+                            <option value="Indisponible">Faites un choix</option>
+                            <option value="TV">TV</option>
+                            <option value="TV Spécial">TV Spécial</option>
+                            <option value="OAV">OAV</option>
+                            <option value="Film">Film</option>
+                            <option value="ONA">ONA</option>
+                            <option value="OAD">OAD</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label>Genre(s)</label>
+                    </th>
+                    <td>
+                        <input type="text" v-model="genre" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label>Thème(s)</label>
+                    </th>
+                    <td>
+                        <input type="text" v-model="theme" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label>Public visé</label>
+                    </th>
+                    <td>
+                        <select v-model="targetedAudience">
+                            <option value="Indisponible">Faites un choix</option>
+                            <option value="Seinen">Seinen</option>
+                            <option value="Shōnen">Shōnen</option>
+                            <option value="Josei">Josei</option>
+                            <option value="Shōjo">Shōjo</option>
+                            <option value="Kodomo">Kodomo</option>
+                            <option value="Yaoi">Yaoi</option>
+                            <option value="Yuri">Yuri</option>
+                            <option value="18+ - Hentai">Hentai</option>
+                            <option value="Tout public">Tout public</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label>Nombre d'épisodes</label>
+                    </th>
+                    <td>
+                        <input type="number" v-model="episodeNumber" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label>Durée d'un épisode (min)</label>
+                    </th>
+                    <td>
+                        <input type="number" v-model="episodeDuration" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label>Saison</label>
+                    </th>
+                    <td>
+                        <select v-model="firstDiffusionQuarter">
+                            <option value="Indisponible">Faites un choix</option>
+                            <option value="Printemps">Printemps</option>
+                            <option value="Été">Été</option>
+                            <option value="Automne">Automne</option>
+                            <option value="Hiver">Hiver</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label>Année de production</label>
+                    </th>
+                    <td>
+                        <input type="number" v-model="yearProduction" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label>Diffusion</label>
+                    </th>
 
-              <td class="diff">
-                <select v-model="diffusionStatus">
-                  <option value="Indisponible">Faites un choix</option>
-                  <option value="En cours">En cours</option>
-                  <option value="Terminée">Terminé</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <label>Studio(s) d'animation</label>
-              </th>
-              <td>
-                <input type="text" v-model="animationStudio" />
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <table class="formhistory">
-          <tbody>
-            <tr>
-              <th>
-                <label>Histoire</label>
-              </th>
-              <td>
-                <textarea v-model="summary"></textarea>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <table v-for="season in saisons" class="formSeason">
-          <tbody>
-            <tr >
-              <th>Saison</th>
-              <td>
-                <input v-model="season.label" />
-              </td>
-            </tr>
-            <tr>
-              <th>Score</th>
-              <td>
-                <input type="number" step="any" placeholder="MyAnimeList Score : 0,00" v-model="season.score" />
-              </td>
-            </tr>
-            <tr>
-              <th>LD</th>
-              <td>
-                <input placeholder="ID du dossier Uptobox" v-model="season.linkLowDef" />
-              </td>
-            </tr>
-            <tr>
-              <th>720p</th>
-              <td>
-                <input placeholder="ID du dossier Uptobox" v-model="season.link720p" />
-              </td>
-            </tr>
-            <tr>
-              <th>1080p</th>
-              <td>
-                <input placeholder="ID du dossier Uptobox" v-model="season.link1080p" />
-              </td>
-            </tr>
-            <tr>
-              <th>Premium</th>
-              <td>
-                <input placeholder="Lien direct Uptobox" v-model="season.linkPremium" />
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <br/>
+                    <td class="diff">
+                        <select v-model="diffusionStatus">
+                            <option value="Indisponible">Faites un choix</option>
+                            <option value="En cours">En cours</option>
+                            <option value="Terminée">Terminé</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label>Studio(s) d'animation</label>
+                    </th>
+                    <td>
+                        <input type="text" v-model="animationStudio" />
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <table class="formhistory">
+                <tbody>
+                <tr>
+                    <th>
+                        <label>Histoire</label>
+                    </th>
+                    <td>
+                        <textarea v-model="summary"></textarea>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <table v-for="season in saisons" class="formSeason">
+                <tbody>
+                <tr >
+                    <th>Saison</th>
+                    <td>
+                        <input v-model="season.label" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>Score</th>
+                    <td>
+                        <input type="number" step="any" placeholder="MyAnimeList Score : 0,00" v-model="season.score" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>LD</th>
+                    <td>
+                        <input placeholder="ID du dossier Uptobox" v-model="season.linkLowDef" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>720p</th>
+                    <td>
+                        <input placeholder="ID du dossier Uptobox" v-model="season.link720p" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>1080p</th>
+                    <td>
+                        <input placeholder="ID du dossier Uptobox" v-model="season.link1080p" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>Premium</th>
+                    <td>
+                        <input placeholder="Lien direct Uptobox" v-model="season.linkPremium" />
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <br/>
 
-        <button @click="addSeason">+</button>
-        <button @click="removeSeason">-</button>
-      </div>
+            <button @click="addSeason">+</button>
+            <button @click="removeSeason">-</button>
+        </div>
 
     </div>
     <!-- Preview -->
 
     <div id="previewRender">
-      <h2>Visualisation</h2>
-      <div id="preview">
-        <div id="complements">
-          <p class="affiche">
-            <img v-bind:src="picture" v-bind:alt="title" />
-          </p>
-        </div>
+        <h2>Visualisation</h2>
+        <div id="preview">
+            <div id="complements">
+                <p class="affiche">
+                    <img v-bind:src="picture" v-bind:alt="title" />
+                </p>
+            </div>
 
-        <div id="info">
-          <p>
+            <div id="info">
+                <p>
             <span>
               <b>Titre alternatif</b> :{{title}}
             </span>
-            <br/>
-            <br/>
-            <b>Origine</b> : {{formatValue(origin)}}
-            <br/>
-            <b>Catégorie</b> : {{formatValue(category)}}
-            <br/>
-            <b>Genre(s)</b> : {{formatValue(genre)}}
-            <element data-link="genre||'Indisponible'"></element>
-            <br/>
-            <b>Théme(s)</b> : {{formatValue(theme)}}
-            <element data-link="theme||'Indisponible'"></element>
-            <br/>
-            <b>Public visé</b> : {{formatValue(targetedAudience)}}
-            <element data-link="targetedAudience||'Indisponible'"></element>
-            <br/>
-            <b>Nombre d'épisode</b> : {{formatValue(episodeNumber)}}
-            <element data-link="episodeNumber||'Indisponible'"></element>
-            <br/>
-            <b>Durée d'un épisode</b> : {{formatDurationMins(episodeDuration)}}
-            <element data-link="episodeDuration||'Indisponible'"></element>
-            <element data-link="visible{:episodeDuration}"> mins</element>
-            <br/>
-            <b>Saison</b> : {{formatValue(firstDiffusionQuarter)}}
-            <element data-link="firstDiffusionQuarter||'Indisponible'"></element>
-            <br/>
-            <b>Année de production</b> : {{formatValue(yearProduction)}}
-            <element data-link="yearProduction||'Indisponible'"></element>
-            <br/>
-            <b>Diffusion</b> : {{formatValue(diffusionStatus)}}
-            <element data-link="diffusionStatus||'Indisponible'"></element>
-            <br/>
-            <b>Studio(s) d'animation</b> : {{formatValue(animationStudio)}}
-            <element data-link="animationStudio||'Indisponible'"></element>
-            <br/>
-            <br/>
-            <b>Histoire</b> : {{formatValue(summary)}}
-            <element data-link="summary||'Indisponible'"></element>
-          </p>
+                    <br/>
+                    <br/>
+                    <b>Origine</b> : {{formatValue(origin)}}
+                    <br/>
+                    <b>Catégorie</b> : {{formatValue(category)}}
+                    <br/>
+                    <b>Genre(s)</b> : {{formatValue(genre)}}
+                    <element data-link="genre||'Indisponible'"></element>
+                    <br/>
+                    <b>Théme(s)</b> : {{formatValue(theme)}}
+                    <element data-link="theme||'Indisponible'"></element>
+                    <br/>
+                    <b>Public visé</b> : {{formatValue(targetedAudience)}}
+                    <element data-link="targetedAudience||'Indisponible'"></element>
+                    <br/>
+                    <b>Nombre d'épisode</b> : {{formatValue(episodeNumber)}}
+                    <element data-link="episodeNumber||'Indisponible'"></element>
+                    <br/>
+                    <b>Durée d'un épisode</b> : {{formatDurationMins(episodeDuration)}}
+                    <element data-link="episodeDuration||'Indisponible'"></element>
+                    <element data-link="visible{:episodeDuration}"> mins</element>
+                    <br/>
+                    <b>Saison</b> : {{formatValue(firstDiffusionQuarter)}}
+                    <element data-link="firstDiffusionQuarter||'Indisponible'"></element>
+                    <br/>
+                    <b>Année de production</b> : {{formatValue(yearProduction)}}
+                    <element data-link="yearProduction||'Indisponible'"></element>
+                    <br/>
+                    <b>Diffusion</b> : {{formatValue(diffusionStatus)}}
+                    <element data-link="diffusionStatus||'Indisponible'"></element>
+                    <br/>
+                    <b>Studio(s) d'animation</b> : {{formatValue(animationStudio)}}
+                    <element data-link="animationStudio||'Indisponible'"></element>
+                    <br/>
+                    <br/>
+                    <b>Histoire</b> : {{formatValue(summary)}}
+                    <element data-link="summary||'Indisponible'"></element>
+                </p>
+            </div>
+            <table id="download">
+                <tbody>
+                <thead>
+                <tr>
+                    <td></td>
+                    <td>Score</td>
+                    <td>LD</td>
+                    <td>720p</td>
+                    <td>1080p</td>
+                    <td>Premium</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="season in saisons" class="bold">
+                    <td>{{formatValue(season.label)}}</td>
+                    <td class="score">{{formatValue(season.score)}}</td>
+                    <td>
+                        <a v-if="season.linkLowDef" target="_blank" v-bind:href="parseLink(season.linkLowDef)">
+                            <img src="https://otaku-family.fr/uploads/ressources/uptobox.png">
+                        </a>
+                        <template v-else>Indisponible</template>
+                    </td>
+                    <td>
+                        <a v-if="season.link720p" target="_blank" v-bind:href="parseLink(season.link720p)">
+                            <img src="https://otaku-family.fr/uploads/ressources/uptobox.png">
+                        </a>
+                        <template v-else>Indisponible</template>
+                    </td>
+                    <td>
+                        <a v-if="season.link1080p" target="_blank" v-bind:href="parseLink(season.link1080p)">
+                            <img src="https://otaku-family.fr/uploads/ressources/uptobox.png">
+                        </a>
+                        <template v-else>Indisponible</template>
+                    </td>
+                    <td>
+                        <a v-if="season.linkPremium" target="_blank" v-bind:href="parseLink(season.linkPremium)">
+                            <img src="https://otaku-family.fr/uploads/ressources/uptobox.png">
+                        </a>
+                        <template v-else>Indisponible</template>
+                    </td>
+
+                </tr>
+                </tbody>
+
+            </table>
         </div>
-        <table id="download">
-          <tbody>
-            <thead>
-              <tr>
-                <td></td>
-                <td>Score</td>
-                <td>LD</td>
-                <td>720p</td>
-                <td>1080p</td>
-                <td>Premium</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="season in saisons" class="bold">
-                <td>{{formatValue(season.label)}}</td>
-                <td class="score">{{formatValue(season.score)}}</td>
-                <td>
-                  <a v-if="season.linkLowDef" target="_blank" v-bind:href="parseLink(season.linkLowDef)">
-                    <img src="https://otaku-family.fr/uploads/ressources/uptobox.png">
-                  </a>
-                  <template v-else>Indisponible</template>
-                </td>
-                <td>
-                  <a v-if="season.link720p" target="_blank" v-bind:href="parseLink(season.link720p)">
-                    <img src="https://otaku-family.fr/uploads/ressources/uptobox.png">
-                  </a>
-                  <template v-else>Indisponible</template>
-                </td>
-                <td>
-                  <a v-if="season.link1080p" target="_blank" v-bind:href="parseLink(season.link1080p)">
-                    <img src="https://otaku-family.fr/uploads/ressources/uptobox.png">
-                  </a>
-                  <template v-else>Indisponible</template>
-                </td>
-                <td>
-                  <a v-if="season.linkPremium" target="_blank" v-bind:href="parseLink(season.linkPremium)">
-                    <img src="https://otaku-family.fr/uploads/ressources/uptobox.png">
-                  </a>
-                  <template v-else>Indisponible</template>
-                </td>
-
-              </tr>
-            </tbody>
-
-        </table>
-      </div>
 
     </div>
   </div>
-    <hr>
-    <hr>
+<hr/>
+<hr/>
 
-    <!-- Code -->
+<!-- Code -->
 
-    <div class="animeCode">
-      <h2>Code HTML</h2>
-      <div id="code">
+<div class="animeCode">
+    <h2>Code HTML</h2>
+    <div id="code">
+
         <button id="copyCode" class="btnCopy" data-clipboard-target="#generatedHtml">Copier</button>
         <pre id="generatedHtml">
   <code>&lt;div id="complements"&gt;
-    &lt;p class="affiche"&gt;<template v-if="picture">&lt;img src="{{picture}}" alt="{{title}}" /&gt;</template>
+    &lt;p class="affiche"&gt;<template v-if="picture">&lt;img src=" {{ picture }} " alt=" {{ title }} " /&gt;</template>
     &lt;/p&gt;
   &lt;/div&gt;
   &lt;div id="info"&gt;
     &lt;p&gt;
       &lt;span&gt;
-        &lt;b&gt;Titre alternatif&lt;/b&gt; : {{title}}
+        &lt;b&gt;Titre alternatif&lt;/b&gt; : {{ title }}
       &lt;/span&gt;
       &lt;br/&gt;&lt;br/&gt;
       &lt;b&gt;Origine&lt;/b&gt; : {{formatValue(origin)}}&lt;br/&gt;
@@ -401,8 +402,8 @@
         &lt;td&gt;Premium&lt;/td&gt;
       &lt;/tr&gt;
       <template v-for="season in saisons">&lt;tr class="bold"&gt;
-        &lt;td&gt;{{formatValue(season.label)}}&lt;/td&gt;
-        &lt;td class="score"&gt;{{formatValue(season.score)}}&lt;/td&gt;
+        &lt;td&gt; {{ formatValue(season.label) }} &lt;/td&gt;
+        &lt;td class="score"&gt; {{ formatValue(season.score) }} &lt;/td&gt;
         &lt;td&gt;<template v-if="season.linkLowDef">&lt;a target="_blank" href="{{parseLink(season.linkLowDef)}}" ></span>"&gt;&lt;img src="https://otaku-family.fr/uploads/ressources/uptobox.png"&gt;&lt;/a&gt;</template><template v-else>Indisponible</template>&lt;/td&gt;
         &lt;td&gt;<template v-if="season.link720p">&lt;a target="_blank" href="{{parseLink(season.link720p)}}" ></span>"&gt;&lt;img src="https://otaku-family.fr/uploads/ressources/uptobox.png"&gt;&lt;/a&gt;</template><template v-else>Indisponible</template>&lt;/td&gt;
         &lt;td&gt;<template v-if="season.link1080p">&lt;a target="_blank" href="{{parseLink(season.link1080p)}}" ></span>"&gt;&lt;img src="https://otaku-family.fr/uploads/ressources/uptobox.png"&gt;&lt;/a&gt;</template><template v-else>Indisponible</template>&lt;/td&gt;
@@ -410,9 +411,10 @@
       &lt;/tr&gt;</template>
     &lt;/tbody&gt;
   &lt;/table&gt;</code></pre>
-			</div>
-		</div>
-    <script>
+    </div>
+</div>
+</div>     
+<script>
     // If data is loaded from another page, mounted() method will use it for initialisation
     preloadedData= {   
     <?php if(isset($_POST['url']) && !empty($_POST['url'])) : ?>
@@ -433,10 +435,10 @@
 			<?php endif; ?>
     }
     </script>
-    <script>
+<script>
       var clipboard = new Clipboard('#copyCode')
       var app = new Vue({
-        el: '#animeData',
+        el: '#app',
         data: {
           title: null,
           picture: null,

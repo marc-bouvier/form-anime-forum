@@ -10,6 +10,8 @@
     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-axios@2.1.1/dist/vue-axios.min.js"></script>
 
 </head>
 
@@ -18,7 +20,8 @@
 <div id="app">
 
 <!-- Loader -->
-
+<input v-model="icotakuUrl"/>
+<button @click="initFromIcotaku(icotakuUrl)">Load from icotaku</button>
 <div class="animeCode">
     <?php
     include 'icotaku-loader.php';
@@ -461,7 +464,8 @@
             link720p: null,
             link1080p: null,
             linkPremium: null
-          }]
+          }],
+          icotakuUrl:null
         },
         mounted(){
           // overriding default values with extraction from page
@@ -504,20 +508,17 @@
           removeSeason() {
             this.saisons.pop()
           },
-          initFromUrl(url){
-            //Get html content
-            let pageContent = this.loadPage(url)
-            console.log(pageContent)
-            // 
-            let title = (''+/<h1>(.*?)<\/h1>/.exec('<h1>test</h1>')[1]).trim()
-          },
-          loadPage(href)
-            {
-                var xmlhttp = new XMLHttpRequest();
-                xmlhttp.open("GET", href, false);
-                xmlhttp.send();
-                return xmlhttp.responseText;
-            }
+          initFromIcotaku(url){
+              let self = this;
+            Vue.axios.get('proxy.php?url='+encodeURI( url))
+            .then(data=>{
+                icotakuAnime={}
+                icotakuAnime.html = data.data
+                icotakuAnime.dom = new DOMParser().parseFromString(icotakuAnime.html,'text/html')
+                self.genre = icotakuAnime.dom.getElementById('id_genre').textContent.trim()
+                self.theme = icotakuAnime.dom.getElementById('id_theme').textContent.trim()
+            })
+          }
         }
       })
     </script>

@@ -278,36 +278,25 @@
                     <b>Catégorie</b> : {{formatValue(category)}}
                     <br/>
                     <b>Genre(s)</b> : {{formatValue(genre)}}
-                    <element data-link="genre||'Indisponible'"></element>
                     <br/>
                     <b>Théme(s)</b> : {{formatValue(theme)}}
-                    <element data-link="theme||'Indisponible'"></element>
                     <br/>
                     <b>Public visé</b> : {{formatValue(targetedAudience)}}
-                    <element data-link="targetedAudience||'Indisponible'"></element>
                     <br/>
                     <b>Nombre d'épisode</b> : {{formatValue(episodeNumber)}}
-                    <element data-link="episodeNumber||'Indisponible'"></element>
                     <br/>
                     <b>Durée d'un épisode</b> : {{formatDurationMins(episodeDuration)}}
-                    <element data-link="episodeDuration||'Indisponible'"></element>
-                    <element data-link="visible{:episodeDuration}"> mins</element>
                     <br/>
                     <b>Saison</b> : {{formatValue(firstDiffusionQuarter)}}
-                    <element data-link="firstDiffusionQuarter||'Indisponible'"></element>
                     <br/>
                     <b>Année de production</b> : {{formatValue(yearProduction)}}
-                    <element data-link="yearProduction||'Indisponible'"></element>
                     <br/>
                     <b>Diffusion</b> : {{formatValue(diffusionStatus)}}
-                    <element data-link="diffusionStatus||'Indisponible'"></element>
                     <br/>
                     <b>Studio(s) d'animation</b> : {{formatValue(animationStudio)}}
-                    <element data-link="animationStudio||'Indisponible'"></element>
                     <br/>
                     <br/>
                     <b>Histoire</b> : {{formatValue(summary)}}
-                    <element data-link="summary||'Indisponible'"></element>
                 </p>
             </div>
             <table id="download">
@@ -512,15 +501,44 @@
               let self = this;
             Vue.axios.get('proxy.php?url='+encodeURI( url))
             .then(data=>{
-                icotakuAnime={}
+                let icotakuAnime={}
                 icotakuAnime.html = data.data
                 icotakuAnime.dom = new DOMParser().parseFromString(icotakuAnime.html,'text/html')
+                self.title = icotakuAnime.dom.getElementsByTagName('h1')[0].textContent.trim()
                 self.genre = icotakuAnime.dom.getElementById('id_genre').textContent.trim()
                 self.theme = icotakuAnime.dom.getElementById('id_theme').textContent.trim()
+                self.category=loadFromIcotaku(icotakuAnime.dom,'Catégorie')
+                self.origin=loadFromIcotaku(icotakuAnime.dom,'Origine')
+                self.targetedAudience=loadFromIcotaku(icotakuAnime.dom,'Public visé')
+                self.episodeNumber=parseInt(loadFromIcotaku(icotakuAnime.dom,'Nombre d\'épisode'))
             })
-          }
+          },
+          
         }
       })
+
+      function loadFromIcotaku(icotakuDom,infoContains){
+        let infofiche = icotakuDom.getElementsByClassName('p info_fiche')[0]
+        let allInfos = infofiche.querySelectorAll('b')
+        let valuesIterator = allInfos.values()
+        let categorie=null
+        let origine=null
+        let publicVise=null
+        let next = valuesIterator.next()
+        while( !next.done){
+            if(next.value && next.value.textContent){
+                let row = next.value
+                let rowText = next.value.textContent
+                if(rowText.includes(infoContains)){
+                    return row.nextSibling.textContent.trim()
+                }
+                
+            }
+            next = valuesIterator.next()
+        }
+        return null
+
+      }
     </script>
 </body>
 

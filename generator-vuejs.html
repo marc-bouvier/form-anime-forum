@@ -24,6 +24,7 @@
         <div class="animeCode">
             <input v-model="icotakuUrl" />
             <button @click="initFromIcotaku(icotakuUrl)">Load from icotaku</button>
+            <button @click="reset">Reset</button>
         </div>
         <hr/>
         <hr/>
@@ -424,6 +425,31 @@
                 icotakuUrl: null
             },
             methods: {
+                reset() {
+                    this.title = null
+                    this.picture = null,
+                        this.origin = 'Indisponible',
+                        this.category = 'Indisponible',
+                        this.genre = null,
+                        this.theme = null,
+                        this.targetedAudience = 'Indisponible',
+                        this.episodeNumber = null,
+                        this.episodeDuration = null,
+                        this.firstDiffusionQuarter = 'Indisponible',
+                        this.yearProduction = null,
+                        this.diffusionStatus = 'Indisponible',
+                        this.animationStudio = null,
+                        this.summary = null,
+                        Vue.set(this, 'saisons', [{
+                            label: null,
+                            score: null,
+                            linkLowDef: null,
+                            link720p: null,
+                            link1080p: null,
+                            linkPremium: null
+                        }])
+                    this.icotakuUrl = null
+                },
                 formatValue(value) {
                     return value ? value : 'Indisponible'
                 },

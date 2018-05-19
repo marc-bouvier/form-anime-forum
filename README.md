@@ -2,12 +2,14 @@
 Générateur d'html pour inclure dans un forum
 
 * generator.php : générateur original (legacy) utilisant jsRender et jsView
-* generator-vuejs.php : nouveau générateur utilisant vue.js
 * icotaky-loader.php : permet de précharger une fiche à partir de icotaku
+* generator-vuejs.html : nouveau générateur utilisant vue.js sans php
+* proxy.php : proxy permettant de charger une page d'un site externe pour contourner [les limitations CORS](https://fr.wikipedia.org/wiki/Cross-origin_resource_sharing)
+
 
 ## TODO
 * Multi account
-* Reset bouton
+* Reset bouton (fait dans generator-vuejs.html)
 * Loader Icotaku, récupération correcte de l'histoire.
 * Ajout d'un Loader pour MAL afin de récupérer l'image et le score.
 

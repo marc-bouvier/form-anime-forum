@@ -7,12 +7,11 @@
     <link rel="stylesheet" type="text/css" href="../uploads/ressources/generator.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i">
     <link rel="shortcut icon" href="../uploads/ressources/favicon.ico">
-    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-axios@2.1.1/dist/vue-axios.min.js"></script>
-
 </head>
 
 <body>
@@ -457,7 +456,7 @@
                     return duration ? duration + ' mins' : 'Indisponible'
                 },
                 parseLink(id) {
-                    return "https://otaku-family.fr/parser.php?acc_id=0&id=" + id
+                    return "../parser.php?acc_id=0&id=" + id
                 },
                 addSeason() {
                     this.saisons.push({
@@ -531,5 +530,4 @@
         }
     </script>
 </body>
-
 </html>

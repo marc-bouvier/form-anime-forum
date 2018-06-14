@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Otaku Family - Fiches</title>
-    <link rel="stylesheet" type="text/css" href="/uploads/ressources/generator.css">
+    <link rel="stylesheet" type="text/css" href="../uploads/ressources/generator.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i">
-    <link rel="shortcut icon" href="/uploads/ressources/favicon.ico">
+    <link rel="shortcut icon" href="../uploads/ressources/favicon.ico">
     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
@@ -306,25 +306,25 @@
                                     <td class="score">{{formatValue(season.score)}}</td>
                                     <td>
                                         <a v-if="season.linkLowDef" target="_blank" v-bind:href="parseLink(season.linkLowDef)">
-                                            <img src="https://otaku-family.fr/uploads/ressources/uptobox.png">
+                                            <img src="../uploads/ressources/uptobox.png">
                                         </a>
                                         <template v-else>Indisponible</template>
                                     </td>
                                     <td>
                                         <a v-if="season.link720p" target="_blank" v-bind:href="parseLink(season.link720p)">
-                                            <img src="https://otaku-family.fr/uploads/ressources/uptobox.png">
+                                            <img src="../uploads/ressources/uptobox.png">
                                         </a>
                                         <template v-else>Indisponible</template>
                                     </td>
                                     <td>
                                         <a v-if="season.link1080p" target="_blank" v-bind:href="parseLink(season.link1080p)">
-                                            <img src="https://otaku-family.fr/uploads/ressources/uptobox.png">
+                                            <img src="../uploads/ressources/uptobox.png">
                                         </a>
                                         <template v-else>Indisponible</template>
                                     </td>
                                     <td>
                                         <a v-if="season.linkPremium" target="_blank" v-bind:href="parseLink(season.linkPremium)">
-                                            <img src="https://otaku-family.fr/uploads/ressources/uptobox.png">
+                                            <img src="../uploads/ressources/uptobox.png">
                                         </a>
                                         <template v-else>Indisponible</template>
                                     </td>
@@ -369,6 +369,7 @@
       &lt;b&gt;Histoire&lt;/b&gt; : {{formatValue(summary)}}
     &lt;/p&gt;
   &lt;/div&gt;
+[hide]
   &lt;table id="download"&gt;
     &lt;tbody&gt;
       &lt;tr&gt;
@@ -382,14 +383,15 @@
       <template v-for="season in saisons">&lt;tr class="bold"&gt;
         &lt;td&gt; {{ formatValue(season.label) }} &lt;/td&gt;
         &lt;td class="score"&gt; {{ formatValue(season.score) }} &lt;/td&gt;
-        &lt;td&gt;<template v-if="season.linkLowDef">&lt;a target="_blank" href="{{parseLink(season.linkLowDef)}}" ></span>"&gt;&lt;img src="https://otaku-family.fr/uploads/ressources/uptobox.png"&gt;&lt;/a&gt;</template><template v-else>Indisponible</template>&lt;/td&gt;
-        &lt;td&gt;<template v-if="season.link720p">&lt;a target="_blank" href="{{parseLink(season.link720p)}}" ></span>"&gt;&lt;img src="https://otaku-family.fr/uploads/ressources/uptobox.png"&gt;&lt;/a&gt;</template><template v-else>Indisponible</template>&lt;/td&gt;
-        &lt;td&gt;<template v-if="season.link1080p">&lt;a target="_blank" href="{{parseLink(season.link1080p)}}" ></span>"&gt;&lt;img src="https://otaku-family.fr/uploads/ressources/uptobox.png"&gt;&lt;/a&gt;</template><template v-else>Indisponible</template>&lt;/td&gt;
-        &lt;td&gt;<template v-if="season.linkPremium">&lt;a target="_blank" href="{{parseLink(season.linkPremium)}}" ></span>"&gt;&lt;img src="https://otaku-family.fr/uploads/ressources/uptobox.png"&gt;&lt;/a&gt;</template><template v-else>Indisponible</template>&lt;/td&gt;
+        &lt;td&gt;<template v-if="season.linkLowDef">&lt;a target="_blank" href="{{parseLink(season.linkLowDef)}}" ></span>"&gt;&lt;img src="../uploads/ressources/uptobox.png"&gt;&lt;/a&gt;</template><template v-else>Indisponible</template>&lt;/td&gt;
+        &lt;td&gt;<template v-if="season.link720p">&lt;a target="_blank" href="{{parseLink(season.link720p)}}" ></span>"&gt;&lt;img src="../uploads/ressources/uptobox.png"&gt;&lt;/a&gt;</template><template v-else>Indisponible</template>&lt;/td&gt;
+        &lt;td&gt;<template v-if="season.link1080p">&lt;a target="_blank" href="{{parseLink(season.link1080p)}}" ></span>"&gt;&lt;img src="../uploads/ressources/uptobox.png"&gt;&lt;/a&gt;</template><template v-else>Indisponible</template>&lt;/td&gt;
+        &lt;td&gt;<template v-if="season.linkPremium">&lt;a target="_blank" href="{{parseLink(season.linkPremium)}}" ></span>"&gt;&lt;img src="../uploads/ressources/uptobox.png"&gt;&lt;/a&gt;</template><template v-else>Indisponible</template>&lt;/td&gt;
       &lt;/tr&gt;
 	  </template>
     &lt;/tbody&gt;
-  &lt;/table&gt;</code></pre>
+  &lt;/table&gt;
+[/hide]</code></pre>
             </div>
         </div>
     </div>
@@ -399,7 +401,7 @@
             el: '#app',
             data: {
                 title: null,
-                picture: null,
+                picture: '../uploads/ressources/indisponible.png',
                 origin: 'Indisponible',
                 category: 'Indisponible',
                 genre: null,
@@ -425,7 +427,7 @@
             methods: {
                 reset() {
                     this.title = null
-                    this.picture = null,
+                    this.picture = '../uploads/ressources/indisponible.png',
                         this.origin = 'Indisponible',
                         this.category = 'Indisponible',
                         this.genre = null,

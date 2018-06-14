@@ -16,57 +16,12 @@
 	
 		<!-- Loader -->
 	
-		<div id="animeCode">
+		<div class="animeCode">
 		<?php
-		function getInfos($url){
-			$HTML = file_get_contents($url); // Recup le HTML de la page
-			if(!$HTML) return;
-			preg_match('/<h1>(.*?)<\/h1>/', $HTML, $Name); 
-			preg_match('/Origine : <\/b>(.*?)<\/div>/', $HTML, $Origin); 
-			preg_match('/Catégorie : <\/b>(.*?)<\/div>/', $HTML, $Cat);
-			preg_match_all('/<a href=\"\/genre\/fiche\/[0-9]+.html\">(.*?)<\/a>/', $HTML, $genre);
-			$strGenre = "";
-			foreach($genre[1] as $value){
-				$strGenre .= $value . ", ";
-			}
-			preg_match_all('/<a href=\"\/theme\/fiche\/[0-9]+.html\">(.*?)<\/a>/', $HTML, $theme);
-			$strTheme = "";
-			foreach($theme[1] as $value){
-				$strTheme .= $value . ", ";
-			}
-			preg_match('/<b>Public visé : <\/b>(.*?)<\/div>/', $HTML, $Public);
-			preg_match('/Nombre d\'épisode : <\/b>(.*?)<\/div>/', $HTML, $EpisodeNb);
-			preg_match('/Durée d\'un épisode : <\/b>(.*?)mins/', $HTML, $EpisodeTime);
-			preg_match('/Saison : <\/b>(.*?)<\/div>/', $HTML, $Saison);
-			preg_match('/Année de production : <\/b>(.*?)<\/div>/', $HTML, $Prod);
-			preg_match('/Diffusion : <\/b>(.*?)<\/div>/', $HTML, $Diff);
-			preg_match_all('/<a href=\"\/studio\/fiche\/[0-9]+.html\">(.*?)<\/a>/', $HTML, $Studio);
-			$strStudio = "";
-			foreach($Studio[1] as $value){
-				$strStudio .= $value . ", ";
-			}
-			preg_match('/<p align=\'justify\'>(.*?)<br \/>/',$HTML, $Story);
-			$infos = array(
-				trim($Name[1]), // Name
-				trim($Origin[1]),	
-				trim($Cat[1]),
-				trim($strGenre),
-				trim($strTheme),
-				trim($Public[1]),  // 5
-				trim($EpisodeNb[1]),
-				trim($EpisodeTime[1]),
-				trim($Saison[1]),
-				trim($Prod[1]),
-				trim($Diff[1]), // 10
-				trim($strStudio),
-				trim($Story[1]), // 12
-				$genre[1],
-				$theme[1],
-			);
-			return $infos;
-		}
+    include 'icotaku-loader.php';
+    
 		if(isset($_POST['url']) && !empty($_POST['url'])){
-			$infos = getInfos($_POST['url']);
+      $infos = getIcotakuInfos($_POST['url']);
 		}
 		?>
 			<h2>Loader</h2>
@@ -250,7 +205,7 @@
 		
 			<div id="previewRender">
 				<h2>Visualisation</h2>
-				<div id="prewiew">
+				<div id="preview">
 					<div id="complements">
 						<p class="affiche">
 							<img data-link="src{:picture} alt{:title}"/>
@@ -340,10 +295,10 @@
 	
 		<!-- Code -->
 		
-		<div id="animeCode">
+		<div class="animeCode">
 			<h2>Code HTML</h2>
 			<div id="code">
-				<button class="btnCopy" data-clipboard-target="#generatedHtml">Copier</button>
+				<button id="copyCode" class="btnCopy" data-clipboard-target="#generatedHtml">Copier</button>
 				<pre id="generatedHtml">
 <code>&lt;div id="complements"&gt;
 	&lt;p class="affiche"&gt;<span data-link="visible{:picture}">
@@ -429,7 +384,7 @@
         };
         $.link(true, "#animeData,#animeCode", data);
 
-        var clipboard = new Clipboard('.btnCopy')
+        var clipboard = new Clipboard('#copyCode')
 		</script>
 	</body>
 </html>

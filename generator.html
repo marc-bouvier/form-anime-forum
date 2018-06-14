@@ -6,7 +6,7 @@
     <title>Otaku Family - Fiches</title>
     <link rel="stylesheet" type="text/css" href="/uploads/ressources/generator.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i">
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="/uploads/ressources/favicon.ico">
     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
@@ -16,18 +16,19 @@
 </head>
 
 <body>
-
     <div id="app">
 
         <!-- Loader -->
 
         <div class="animeCode">
+			<h2>Loader</h2>
             <input v-model="icotakuUrl" />
-            <button @click="initFromIcotaku(icotakuUrl)">Load from icotaku</button>
+            <button @click="initFromIcotaku(icotakuUrl)">Charger depuis Icotaku</button>
             <button @click="reset">Reset</button>
         </div>
-        <hr/>
-        <hr/>
+		
+    <hr/>
+    <hr/>
 
         <!-- Form -->
 
@@ -238,12 +239,11 @@
                         </tbody>
                     </table>
                     <br/>
-
                     <button @click="addSeason">+</button>
                     <button @click="removeSeason">-</button>
                 </div>
-
             </div>
+			
             <!-- Preview -->
 
             <div id="previewRender">
@@ -328,24 +328,21 @@
                                         </a>
                                         <template v-else>Indisponible</template>
                                     </td>
-
                                 </tr>
                             </tbody>
-
                     </table>
                 </div>
-
             </div>
         </div>
-        <hr/>
-        <hr/>
+		
+    <hr/>
+    <hr/>
 
         <!-- Code -->
 
         <div class="animeCode">
             <h2>Code HTML</h2>
             <div id="code">
-
                 <button id="copyCode" class="btnCopy" data-clipboard-target="#generatedHtml">Copier</button>
                 <pre id="generatedHtml">
   <code>&lt;div id="complements"&gt;
@@ -389,7 +386,8 @@
         &lt;td&gt;<template v-if="season.link720p">&lt;a target="_blank" href="{{parseLink(season.link720p)}}" ></span>"&gt;&lt;img src="https://otaku-family.fr/uploads/ressources/uptobox.png"&gt;&lt;/a&gt;</template><template v-else>Indisponible</template>&lt;/td&gt;
         &lt;td&gt;<template v-if="season.link1080p">&lt;a target="_blank" href="{{parseLink(season.link1080p)}}" ></span>"&gt;&lt;img src="https://otaku-family.fr/uploads/ressources/uptobox.png"&gt;&lt;/a&gt;</template><template v-else>Indisponible</template>&lt;/td&gt;
         &lt;td&gt;<template v-if="season.linkPremium">&lt;a target="_blank" href="{{parseLink(season.linkPremium)}}" ></span>"&gt;&lt;img src="https://otaku-family.fr/uploads/ressources/uptobox.png"&gt;&lt;/a&gt;</template><template v-else>Indisponible</template>&lt;/td&gt;
-      &lt;/tr&gt;</template>
+      &lt;/tr&gt;
+	  </template>
     &lt;/tbody&gt;
   &lt;/table&gt;</code></pre>
             </div>
@@ -480,15 +478,24 @@
                             icotakuAnime.html = data.data
                             icotakuAnime.dom = new DOMParser().parseFromString(icotakuAnime.html, 'text/html')
                             self.title = icotakuAnime.dom.getElementsByTagName('h1')[0].textContent.trim()
-                            self.genre = icotakuAnime.dom.getElementById('id_genre').textContent.trim()
-                            self.theme = icotakuAnime.dom.getElementById('id_theme').textContent.trim()
-                            self.category = loadFromIcotaku(icotakuAnime.dom, 'Catégorie')
                             self.origin = loadFromIcotaku(icotakuAnime.dom, 'Origine')
+                            self.category = loadFromIcotaku(icotakuAnime.dom, 'Catégorie')
+                            self.genre = icotakuAnime.dom.getElementById('id_genre').textContent.trim()
+							self.theme = icotakuAnime.dom.getElementById('id_theme').textContent.trim()
                             self.targetedAudience = loadFromIcotaku(icotakuAnime.dom, 'Public visé')
-                            self.episodeNumber = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Nombre d\'épisode'))
+							self.episodeNumber = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Nombre d\'épisode'))
+							// self.episodeNumber = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Nombre d\'OAV'))
+							// self.episodeNumber = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Nombre de film'))
+							self.episodeDuration = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Durée d\'un épisode'))
+							// self.episodeDuration = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Durée d\'un OAV'))
+							// self.episodeDuration = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Durée d\'un film'))
+							self.firstDiffusionQuarter = loadFromIcotaku(icotakuAnime.dom, 'Saison')
+							self.yearProduction = loadFromIcotaku(icotakuAnime.dom, 'Année de diffusion')
+							self.diffusionStatus = loadFromIcotaku(icotakuAnime.dom, 'Diffusion')
+							// self.animationStudio = loadFromIcotaku(icotakuAnime.dom, 'd\'animation')
+							// self.summary = loadFromIcotaku(icotakuAnime.dom, 'Histoire')
                         })
                 },
-
             }
         })
 
@@ -496,9 +503,16 @@
             let infofiche = icotakuDom.getElementsByClassName('p info_fiche')[0]
             let allInfos = infofiche.querySelectorAll('b')
             let valuesIterator = allInfos.values()
-            let categorie = null
-            let origine = null
-            let publicVise = null
+			let origin = null
+            let category = null
+            let episodeNumber = null
+			let episodeDuration = null
+			let targetedAudience = null
+			let firstDiffusionQuarter = null
+			let yearProduction = null
+			let diffusionStatus = null
+			// let animationStudio = null
+			// let summary = null
             let next = valuesIterator.next()
             while (!next.done) {
                 if (next.value && next.value.textContent) {
@@ -512,7 +526,6 @@
                 next = valuesIterator.next()
             }
             return null
-
         }
     </script>
 </body>

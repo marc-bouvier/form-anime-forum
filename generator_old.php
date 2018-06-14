@@ -346,45 +346,5 @@
 			&lt;td&gt;{^{if link1080p}}&lt;a target="_blank" href="<span data-link="{linkParser:link1080p}"></span>"&gt;&lt;img src="https://otaku-family.fr/uploads/ressources/uptobox.png"&gt;&lt;/a&gt;{{else}}Indisponible{{/if}}&lt;/td&gt;
 			&lt;td&gt;{^{if linkPremium}}&lt;a target="_blank" href="<span data-link="linkPremium"></span>"&gt;&lt;img src="https://otaku-family.fr/uploads/ressources/uptobox.png"&gt;&lt;/a&gt;{{else}}Indisponible{{/if}}&lt;/td&gt;
 		&lt;/tr&gt;</pre></script>
-		<script>
-        $.views.converters({
-            linkParser: function(id) {
-                return "https://otaku-family.fr/parser.php?acc_id=0&id=" + id
-            }
-        });
-        var data = {
-			<?php if(isset($_POST['url']) && !empty($_POST['url'])) : ?>
-            "title": "<?php echo $infos[0] ?>",
-			"origin": "<?php echo $infos[1] ?>",
-			"category": "<?php echo $infos[2] ?>",
-			"genre": "<?php echo $infos[3] ?>",
-			"theme": "<?php echo $infos[4] ?>",
-			"targetedAudience": "<?php echo $infos[5] ?>",
-			"episodeNumber": "<?php echo $infos[6] ?>",
-			"episodeDuration": "<?php echo $infos[7] ?>",
-			"firstDiffusionQuarter": "<?php echo $infos[8] ?>",
-			"yearProduction": "<?php echo $infos[9] ?>",
-			"diffusionStatus": "<?php echo $infos[10] ?>",
-			"animationStudio": "<?php echo $infos[11] ?>",
-            "summary": "<?php echo $infos[12] ?>",
-			<?php endif; ?>
-            "picture": "",
-            "seasons": [{
-                "label": "Saison 01"
-            }],
-            "addSeason": function() {
-                $.observable(this.seasons).insert({});
-            },
-            "removeSeason": function() {
-                if (this.seasons.length > 1) {
-                    $.observable(this.seasons).remove();
-                }
-            }
-
-        };
-        $.link(true, "#animeData,#animeCode", data);
-
-        var clipboard = new Clipboard('#copyCode')
-		</script>
 	</body>
 </html>

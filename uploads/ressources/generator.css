@@ -3,7 +3,7 @@ body {
 	color: #919baf;
 	font-size: 14px !important;
 	line-height: 18px;
-	background: #1c1e31 url(bg.png) no-repeat fixed 100% 0;
+	background: #1c1e31 url(../uploads/ressources/bg.png) no-repeat fixed 100% 0;
 }
 input, select, textarea {
 	width: 450px;
@@ -95,14 +95,14 @@ pre {
 	text-align: center;
 	margin-right: 100px
 }
-#preview {
+#prewiew {
 	background-color: rgba(46,50,60,0.85);
 	border: 1px solid #3a3d47;
 	border-radius: 5px;
 	padding: 10px 15px;
 	line-height: 1.6;
 }
-.animeCode { 
+#animeCode {
 	text-align: center;
 }
 #generatedHtml {
@@ -172,7 +172,6 @@ select {
 }
 #generatedHtml {
 	width: 85%;
-}
 }
 @media screen and (max-width: 1300px) {
 input, select, textarea {

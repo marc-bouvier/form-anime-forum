@@ -346,13 +346,13 @@
 				<pre id="generatedHtml">
 <code>&lt;div id="anime"&gt;
 	&lt;div id="complements"&gt;
-		&lt;p class="affiche"&gt;<template v-if="picture">&lt;img src=" {{ picture }} " alt=" {{ title }} " /&gt;</template>
+		&lt;p class="affiche"&gt;<template v-if="picture">&lt;img src="{{picture}}" alt="{{title}}" /&gt;</template>
 		&lt;/p&gt;
 	&lt;/div&gt;
 	&lt;div id="info"&gt;
 		&lt;p&gt;
 			&lt;span&gt;
-				&lt;b&gt;Titre alternatif&lt;/b&gt; : {{ title }}
+				&lt;b&gt;Titre alternatif&lt;/b&gt; : {{title}}
 			&lt;/span&gt;
 			&lt;br/&gt;&lt;br/&gt;
 			&lt;b&gt;Origine&lt;/b&gt; : {{formatValue(origin)}}&lt;br/&gt;
@@ -381,8 +381,8 @@
 					&lt;td&gt;Premium&lt;/td&gt;
 				&lt;/tr&gt;
 				<template v-for="season in saisons">&lt;tr class="bold"&gt;
-					&lt;td&gt; {{ formatValue(season.label) }} &lt;/td&gt;
-					&lt;td class="score"&gt; {{ formatValue(season.score) }} &lt;/td&gt;
+					&lt;td&gt;{{formatValue(season.label)}}&lt;/td&gt;
+					&lt;td class="score"&gt;{{formatValue(season.score)}}&lt;/td&gt;
 					&lt;td&gt;<template v-if="season.linkLowDef">&lt;a target="_blank" href="{{parseLink(season.linkLowDef)}}" ></span>"&gt;&lt;img src="../uploads/ressources/uptobox.png"&gt;&lt;/a&gt;</template><template v-else>Indisponible</template>&lt;/td&gt;
 					&lt;td&gt;<template v-if="season.link720p">&lt;a target="_blank" href="{{parseLink(season.link720p)}}" ></span>"&gt;&lt;img src="../uploads/ressources/uptobox.png"&gt;&lt;/a&gt;</template><template v-else>Indisponible</template>&lt;/td&gt;
 					&lt;td&gt;<template v-if="season.link1080p">&lt;a target="_blank" href="{{parseLink(season.link1080p)}}" ></span>"&gt;&lt;img src="../uploads/ressources/uptobox.png"&gt;&lt;/a&gt;</template><template v-else>Indisponible</template>&lt;/td&gt;

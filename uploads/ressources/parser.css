@@ -3,7 +3,7 @@ body {
 	color: #919baf;
 	font-size: 14px !important;
 	line-height: 18px;
-	background: #1c1e31 url(bg.png) no-repeat fixed 100% 0;
+	background: #1c1e31 url(../uploads/ressources/bg.png) no-repeat fixed 100% 0;
 }
 h2 {
 	text-align: center;

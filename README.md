@@ -1,20 +1,19 @@
 # form-anime-forum
 Générateur d'html pour inclure dans un forum
 
-* generator.php : générateur original (legacy) utilisant jsRender et jsView
-* icotaky-loader.php : permet de précharger une fiche à partir de icotaku
-* generator-vuejs.html : nouveau générateur utilisant vue.js sans php
+* generator.html : nouveau générateur utilisant vue.js sans php
 * proxy.php : proxy permettant de charger une page d'un site externe pour contourner [les limitations CORS](https://fr.wikipedia.org/wiki/Cross-origin_resource_sharing)
-
+* generator_old.php : générateur original (legacy) utilisant jsRender et jsView
+* icotaky-loader.php : permet de précharger une fiche à partir de icotaku pour generator_old.php
 
 ## TODO
-* Multi account
-* Reset bouton (fait dans generator-vuejs.html)
-* Loader Icotaku, récupération correcte de l'histoire.
-* Ajout d'un Loader pour MAL afin de récupérer l'image et le score.
+* Gestion du multi compte pour Uptobox
+* Loader Icotaku, récupération du nombre d'épisode en fonction d'une serie ou d'un OAV ou d'un film, meme chose pour la durée, du studio et de l'histoire.
+* Loader pour MyAnimeListe.com afin de récupérer l'image et le score.
+* Gestion du masquage en fonction du service de simulcast (```<adn></adn> / <waka></waka> / <crunch></crunch> / <netflix></netflix> / <amazon></amazon>```) a ajouter après et avant [hide] / [/hide]
+* Isoler le Javascript
 
 ## Lancer localement avec Docker
-
 Pour éviter d'avoir à installer PHP, il est possible de lancer le projet avec docker.
 Prérequis : avoir docker installé.
 

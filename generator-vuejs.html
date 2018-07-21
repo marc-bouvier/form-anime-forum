@@ -486,6 +486,12 @@
                             self.origin = loadFromIcotaku(icotakuAnime.dom, 'Origine')
                             self.targetedAudience = loadFromIcotaku(icotakuAnime.dom, 'Public visé')
                             self.episodeNumber = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Nombre d\'épisode'))
+                            self.episodeDuration = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Durée d\'un épisode').replace('min', '').trim())
+                            self.firstDiffusionQuarter = loadFromIcotaku(icotakuAnime.dom, 'Saison')
+                            self.yearProduction = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Année de production'))
+                            self.diffusionStatus = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Diffusion'))
+                            self.animationStudio = loadFromIcotaku(icotakuAnime.dom, 'Studio(s) d\'animation')
+
                         })
                 },
 
@@ -513,6 +519,20 @@
             }
             return null
 
+        }
+
+        function loadStoryFromIcotakuDom(icotakuDom) {
+            let i = 0
+            let histoireDom = null
+            while (i < icotakuDom.length) {
+                let titleDom = hh2[i]
+                let rowText = titleDom.textContent
+                if (rowText.includes('Histoire')) {
+                    histoireDom = titleDom.nextSibling
+                }
+                i = i + 1
+            }
+            // TODO ... histoireDom.
         }
     </script>
 </body>

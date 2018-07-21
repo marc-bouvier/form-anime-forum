@@ -380,10 +380,8 @@
                     $.observable(this.seasons).remove();
                 }
             }
-
         };
         $.link(true, "#animeData,#animeCode", data);
-
         var clipboard = new Clipboard('#copyCode')
 		</script>
 	</body>

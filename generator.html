@@ -26,8 +26,8 @@
 			<button @click="reset">Reset</button>
 		</div>
 
-	<hr/>
-	<hr/>
+		<hr/>
+		<hr/>
 
 		<!-- Form -->
 
@@ -242,7 +242,7 @@
 					<button @click="removeSeason">-</button>
 				</div>
 			</div>
-			
+
 			<!-- Preview -->
 
 			<div id="previewRender">
@@ -333,9 +333,9 @@
 				</div>
 			</div>
 		</div>
-		
-	<hr/>
-	<hr/>
+
+		<hr/>
+		<hr/>
 
 		<!-- Code -->
 
@@ -489,7 +489,9 @@
 							self.episodeNumber = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Nombre d\'épisode'))
 							// self.episodeNumber = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Nombre d\'OAV'))
 							// self.episodeNumber = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Nombre de film'))
-							self.episodeDuration = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Durée d\'un épisode'))
+							self.episodeDuration = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Durée d\'un épisode')
+							.replace('mins', '').trim())
+						
 							// self.episodeDuration = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Durée d\'un OAV'))
 							// self.episodeDuration = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Durée d\'un film'))
 							self.firstDiffusionQuarter = loadFromIcotaku(icotakuAnime.dom, 'Saison')
@@ -497,6 +499,9 @@
 							self.diffusionStatus = loadFromIcotaku(icotakuAnime.dom, 'Diffusion')
 							// self.animationStudio = loadFromIcotaku(icotakuAnime.dom, 'd\'animation')
 							// self.summary = loadFromIcotaku(icotakuAnime.dom, 'Histoire')
+							self.animationStudio = loadFromIcotaku(icotakuAnime.dom, 'Studio(s) d\'animation')
+							self.episodeNumber = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Nombre d\'épisode'))
+							self.animationStudio = loadFromIcotaku(icotakuAnime.dom, 'Studio(s) d\'animation')
 						})
 				},
 			}
@@ -532,4 +537,5 @@
 		}
 	</script>
 </body>
+
 </html>

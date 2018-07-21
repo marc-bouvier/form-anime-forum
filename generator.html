@@ -306,8 +306,7 @@
 							<b>Histoire</b> : {{formatValue(summary)}}
 						</p>
 					</div>
-					<template v-for="checkedSimucast in checkedSimucasts" v-key="checkedSimucast">
-						<div>[hide]&lt;{{checkedSimucast}}&gt;</div>
+						<div>[hide]{{simucastOpeningTags}}</div>
 						<table id="download">
 							<tbody>
 								<thead>
@@ -351,8 +350,7 @@
 									</tr>
 								</tbody>
 						</table>
-						<div>&lt;/{{checkedSimucast}}&gt;[/hide]</div>
-					</template>
+						<div>{{simucastClosingTags}}[/hide]</div>
 				</div>
 			</div>
 		</div>
@@ -392,8 +390,7 @@
 			&lt;b&gt;Histoire&lt;/b&gt; : {{formatValue(summary)}}
 		&lt;/p&gt;
 	&lt;/div&gt;
-	<template v-for="checkedSimucast in checkedSimucasts" v-key="checkedSimucast">
-	[hide]&lt;{{checkedSimucast}}&gt;
+	[hide]{{simucastOpeningTags}}
 		&lt;table id="download"&gt;
 			&lt;tbody&gt;
 				&lt;tr&gt;
@@ -415,8 +412,7 @@
 				</template>
 			&lt;/tbody&gt;
 		&lt;/table&gt;
-	&lt;{{checkedSimucast}}&gt;[/hide]
-	</template>
+		{{simucastClosingTags}}[/hide]
 &lt;/div&gt;</code></pre>
 			</div>
 		</div>
@@ -458,6 +454,14 @@
 					'amazon': 'Amazon Prime',
 				},
 				checkedSimucasts: ['download']
+			},
+			computed:{
+				simucastOpeningTags(){
+					return this.checkedSimucasts.map(it=>'<'+it+'>').join('')
+				},
+				simucastClosingTags(){
+					return this.checkedSimucasts.slice().reverse().map(it=>'</'+it+'>').join('')
+				}
 			},
 			methods: {
 				reset() {

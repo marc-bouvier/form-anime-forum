@@ -183,6 +183,25 @@
 									<input type="text" v-model="animationStudio" />
 								</td>
 							</tr>
+							<tr>
+								<th>
+									<label>Simucast(s)</label>
+								</th>
+								<td>
+									<table>
+										<tbody>
+											<tr v-for="(value, key) in simucast">
+												<td>
+													<input type="checkbox" :id="key" :value="key" v-model="checkedSimucasts" style="width: 3em" />
+												</td>
+												<td style="text-align: left">
+													<label :for="key">{{value}}</label>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
 						</tbody>
 					</table>
 					<table class="formhistory">
@@ -287,49 +306,53 @@
 							<b>Histoire</b> : {{formatValue(summary)}}
 						</p>
 					</div>
-					<table id="download">
-						<tbody>
-							<thead>
-								<tr>
-									<td></td>
-									<td>Score</td>
-									<td>LD</td>
-									<td>720p</td>
-									<td>1080p</td>
-									<td>Premium</td>
-								</tr>
-							</thead>
+					<template v-for="checkedSimucast in checkedSimucasts" v-key="checkedSimucast">
+						<div>[hide]&lt;{{checkedSimucast}}&gt;</div>
+						<table id="download">
 							<tbody>
-								<tr v-for="season in saisons" class="bold">
-									<td>{{formatValue(season.label)}}</td>
-									<td class="score">{{formatValue(season.score)}}</td>
-									<td>
-										<a v-if="season.linkLowDef" target="_blank" v-bind:href="parseLink(season.linkLowDef)">
-											<img src="../uploads/ressources/uptobox.png">
-										</a>
-										<template v-else>Indisponible</template>
-									</td>
-									<td>
-										<a v-if="season.link720p" target="_blank" v-bind:href="parseLink(season.link720p)">
-											<img src="../uploads/ressources/uptobox.png">
-										</a>
-										<template v-else>Indisponible</template>
-									</td>
-									<td>
-										<a v-if="season.link1080p" target="_blank" v-bind:href="parseLink(season.link1080p)">
-											<img src="../uploads/ressources/uptobox.png">
-										</a>
-										<template v-else>Indisponible</template>
-									</td>
-									<td>
-										<a v-if="season.linkPremium" target="_blank" v-bind:href="parseLink(season.linkPremium)">
-											<img src="../uploads/ressources/uptobox.png">
-										</a>
-										<template v-else>Indisponible</template>
-									</td>
-								</tr>
-							</tbody>
-					</table>
+								<thead>
+									<tr>
+										<td></td>
+										<td>Score</td>
+										<td>LD</td>
+										<td>720p</td>
+										<td>1080p</td>
+										<td>Premium</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr v-for="season in saisons" class="bold">
+										<td>{{formatValue(season.label)}}</td>
+										<td class="score">{{formatValue(season.score)}}</td>
+										<td>
+											<a v-if="season.linkLowDef" target="_blank" v-bind:href="parseLink(season.linkLowDef)">
+												<img src="../uploads/ressources/uptobox.png">
+											</a>
+											<template v-else>Indisponible</template>
+										</td>
+										<td>
+											<a v-if="season.link720p" target="_blank" v-bind:href="parseLink(season.link720p)">
+												<img src="../uploads/ressources/uptobox.png">
+											</a>
+											<template v-else>Indisponible</template>
+										</td>
+										<td>
+											<a v-if="season.link1080p" target="_blank" v-bind:href="parseLink(season.link1080p)">
+												<img src="../uploads/ressources/uptobox.png">
+											</a>
+											<template v-else>Indisponible</template>
+										</td>
+										<td>
+											<a v-if="season.linkPremium" target="_blank" v-bind:href="parseLink(season.linkPremium)">
+												<img src="../uploads/ressources/uptobox.png">
+											</a>
+											<template v-else>Indisponible</template>
+										</td>
+									</tr>
+								</tbody>
+						</table>
+						<div>&lt;/{{checkedSimucast}}&gt;[/hide]</div>
+					</template>
 				</div>
 			</div>
 		</div>
@@ -369,7 +392,8 @@
 			&lt;b&gt;Histoire&lt;/b&gt; : {{formatValue(summary)}}
 		&lt;/p&gt;
 	&lt;/div&gt;
-	[hide]&lt;download&gt;
+	<template v-for="checkedSimucast in checkedSimucasts" v-key="checkedSimucast">
+	[hide]&lt;{{checkedSimucast}}&gt;
 		&lt;table id="download"&gt;
 			&lt;tbody&gt;
 				&lt;tr&gt;
@@ -391,7 +415,8 @@
 				</template>
 			&lt;/tbody&gt;
 		&lt;/table&gt;
-	&lt;/download&gt;[/hide]
+	&lt;{{checkedSimucast}}&gt;[/hide]
+	</template>
 &lt;/div&gt;</code></pre>
 			</div>
 		</div>
@@ -423,7 +448,16 @@
 					link1080p: null,
 					linkPremium: null
 				}],
-				icotakuUrl: null
+				icotakuUrl: null,
+				simucast: {
+					'download': 'Téléchargement',
+					'adn': 'Anime Digital Network',
+					'waka': 'Wakanim',
+					'netflix': 'Netflix',
+					'crunch': 'Crunchyroll',
+					'amazon': 'Amazon Prime',
+				},
+				checkedSimucasts: ['download']
 			},
 			methods: {
 				reset() {
@@ -488,7 +522,7 @@
 							self.targetedAudience = loadFromIcotaku(icotakuAnime.dom, 'Public visé')
 							self.episodeNumber = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Nombre d\'épisode'))
 							self.episodeDuration = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Durée d\'un épisode')
-							.replace('mins', '').trim())
+								.replace('mins', '').trim())
 							self.firstDiffusionQuarter = loadFromIcotaku(icotakuAnime.dom, 'Saison')
 							self.yearProduction = loadFromIcotaku(icotakuAnime.dom, 'Année de diffusion')
 							self.diffusionStatus = loadFromIcotaku(icotakuAnime.dom, 'Diffusion')

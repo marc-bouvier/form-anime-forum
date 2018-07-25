@@ -525,13 +525,18 @@
 							self.genre = icotakuAnime.dom.getElementById('id_genre').textContent.trim()
 							self.theme = icotakuAnime.dom.getElementById('id_theme').textContent.trim()
 							self.targetedAudience = loadFromIcotaku(icotakuAnime.dom, 'Public visé')
-							if (self.category.trim() === 'TV') {
+							let category = self.category.trim()
+							if (category === 'TV' || category === 'TV Spécial') {
 								self.episodeNumber = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Nombre d\'épisode'))
 								self.episodeDuration = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Durée d\'un épisode')
 									.replace('mins', '').trim())
-							} else if (self.category.trim() === 'Film') {
+							} else if (category === 'Film') {
 								self.episodeNumber = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Nombre de film'))
 								self.episodeDuration = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Durée d\'un film')
+									.replace('mins', '').trim())
+							}else if(category==='OAV'){
+								self.episodeNumber = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Nombre d\'OAV'))
+								self.episodeDuration = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Durée d\'un OAV')
 									.replace('mins', '').trim())
 							}
 

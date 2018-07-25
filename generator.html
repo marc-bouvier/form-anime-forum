@@ -521,7 +521,6 @@
 							self.title = icotakuAnime.dom.getElementsByTagName('h1')[0].textContent.trim()
 							self.origin = loadFromIcotaku(icotakuAnime.dom, 'Origine')
 							self.category = loadFromIcotaku(icotakuAnime.dom, 'Catégorie')
-
 							self.genre = icotakuAnime.dom.getElementById('id_genre').textContent.trim()
 							self.theme = icotakuAnime.dom.getElementById('id_theme').textContent.trim()
 							self.targetedAudience = loadFromIcotaku(icotakuAnime.dom, 'Public visé')
@@ -534,13 +533,11 @@
 								self.episodeNumber = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Nombre de film'))
 								self.episodeDuration = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Durée d\'un film')
 									.replace('mins', '').trim())
-							}else if(category==='OAV'){
+							} else if (category === 'OAV') {
 								self.episodeNumber = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Nombre d\'OAV'))
 								self.episodeDuration = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Durée d\'un OAV')
 									.replace('mins', '').trim())
 							}
-
-
 							self.firstDiffusionQuarter = loadFromIcotaku(icotakuAnime.dom, 'Saison')
 							self.yearProduction = loadFromIcotaku(icotakuAnime.dom, 'Année de diffusion')
 							self.diffusionStatus = loadFromIcotaku(icotakuAnime.dom, 'Diffusion')
@@ -554,7 +551,6 @@
 			let infofiche = icotakuDom.getElementsByClassName('p info_fiche')[0]
 			let allInfos = infofiche.querySelectorAll('b')
 			let valuesIterator = allInfos.values()
-			
 			let next = valuesIterator.next()
 			while (!next.done) {
 				if (next.value && next.value.textContent) {
@@ -566,7 +562,6 @@
 						}
 						return row.nextSibling.textContent.trim()
 					}
-
 				}
 				next = valuesIterator.next()
 			}

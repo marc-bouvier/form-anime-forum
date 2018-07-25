@@ -37,7 +37,7 @@ Il faut construire l'image à chaque fois qu'une modification est faite.
 
 Lancer l'image dans un conteneur.
 ```
-> docker run generator-anime
+> docker run generator-anime -p81:80
 AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
 AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
 [Thu May 10 07:39:11.699733 2018] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.10 (Debian) PHP/7.0.30 configured --resuming normal operations

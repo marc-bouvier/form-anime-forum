@@ -306,51 +306,51 @@
 							<b>Histoire</b> : {{formatValue(summary)}}
 						</p>
 					</div>
-						<div>[hide]{{simucastOpeningTags}}</div>
-						<table id="download">
+					<div>[hide]{{simucastOpeningTags}}</div>
+					<table id="download">
+						<tbody>
+							<thead>
+								<tr>
+									<td></td>
+									<td>Score</td>
+									<td>LD</td>
+									<td>720p</td>
+									<td>1080p</td>
+									<td>Premium</td>
+								</tr>
+							</thead>
 							<tbody>
-								<thead>
-									<tr>
-										<td></td>
-										<td>Score</td>
-										<td>LD</td>
-										<td>720p</td>
-										<td>1080p</td>
-										<td>Premium</td>
-									</tr>
-								</thead>
-								<tbody>
-									<tr v-for="season in saisons" class="bold">
-										<td>{{formatValue(season.label)}}</td>
-										<td class="score">{{formatValue(season.score)}}</td>
-										<td>
-											<a v-if="season.linkLowDef" target="_blank" v-bind:href="parseLink(season.linkLowDef)">
-												<img src="../uploads/ressources/uptobox.png">
-											</a>
-											<template v-else>Indisponible</template>
-										</td>
-										<td>
-											<a v-if="season.link720p" target="_blank" v-bind:href="parseLink(season.link720p)">
-												<img src="../uploads/ressources/uptobox.png">
-											</a>
-											<template v-else>Indisponible</template>
-										</td>
-										<td>
-											<a v-if="season.link1080p" target="_blank" v-bind:href="parseLink(season.link1080p)">
-												<img src="../uploads/ressources/uptobox.png">
-											</a>
-											<template v-else>Indisponible</template>
-										</td>
-										<td>
-											<a v-if="season.linkPremium" target="_blank" v-bind:href="parseLink(season.linkPremium)">
-												<img src="../uploads/ressources/uptobox.png">
-											</a>
-											<template v-else>Indisponible</template>
-										</td>
-									</tr>
-								</tbody>
-						</table>
-						<div>{{simucastClosingTags}}[/hide]</div>
+								<tr v-for="season in saisons" class="bold">
+									<td>{{formatValue(season.label)}}</td>
+									<td class="score">{{formatValue(season.score)}}</td>
+									<td>
+										<a v-if="season.linkLowDef" target="_blank" v-bind:href="parseLink(season.linkLowDef)">
+											<img src="../uploads/ressources/uptobox.png">
+										</a>
+										<template v-else>Indisponible</template>
+									</td>
+									<td>
+										<a v-if="season.link720p" target="_blank" v-bind:href="parseLink(season.link720p)">
+											<img src="../uploads/ressources/uptobox.png">
+										</a>
+										<template v-else>Indisponible</template>
+									</td>
+									<td>
+										<a v-if="season.link1080p" target="_blank" v-bind:href="parseLink(season.link1080p)">
+											<img src="../uploads/ressources/uptobox.png">
+										</a>
+										<template v-else>Indisponible</template>
+									</td>
+									<td>
+										<a v-if="season.linkPremium" target="_blank" v-bind:href="parseLink(season.linkPremium)">
+											<img src="../uploads/ressources/uptobox.png">
+										</a>
+										<template v-else>Indisponible</template>
+									</td>
+								</tr>
+							</tbody>
+					</table>
+					<div>{{simucastClosingTags}}[/hide]</div>
 				</div>
 			</div>
 		</div>
@@ -455,12 +455,12 @@
 				},
 				checkedSimucasts: ['download']
 			},
-			computed:{
-				simucastOpeningTags(){
-					return this.checkedSimucasts.map(it=>'<'+it+'>').join('')
+			computed: {
+				simucastOpeningTags() {
+					return this.checkedSimucasts.map(it => '<' + it + '>').join('')
 				},
-				simucastClosingTags(){
-					return this.checkedSimucasts.slice().reverse().map(it=>'</'+it+'>').join('')
+				simucastClosingTags() {
+					return this.checkedSimucasts.slice().reverse().map(it => '</' + it + '>').join('')
 				}
 			},
 			methods: {
@@ -521,12 +521,21 @@
 							self.title = icotakuAnime.dom.getElementsByTagName('h1')[0].textContent.trim()
 							self.origin = loadFromIcotaku(icotakuAnime.dom, 'Origine')
 							self.category = loadFromIcotaku(icotakuAnime.dom, 'Catégorie')
+
 							self.genre = icotakuAnime.dom.getElementById('id_genre').textContent.trim()
 							self.theme = icotakuAnime.dom.getElementById('id_theme').textContent.trim()
 							self.targetedAudience = loadFromIcotaku(icotakuAnime.dom, 'Public visé')
-							self.episodeNumber = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Nombre d\'épisode'))
-							self.episodeDuration = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Durée d\'un épisode')
-								.replace('mins', '').trim())
+							if (self.category.trim() === 'TV') {
+								self.episodeNumber = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Nombre d\'épisode'))
+								self.episodeDuration = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Durée d\'un épisode')
+									.replace('mins', '').trim())
+							} else if (self.category.trim() === 'Film') {
+								self.episodeNumber = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Nombre de film'))
+								self.episodeDuration = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Durée d\'un film')
+									.replace('mins', '').trim())
+							}
+
+
 							self.firstDiffusionQuarter = loadFromIcotaku(icotakuAnime.dom, 'Saison')
 							self.yearProduction = loadFromIcotaku(icotakuAnime.dom, 'Année de diffusion')
 							self.diffusionStatus = loadFromIcotaku(icotakuAnime.dom, 'Diffusion')
@@ -540,22 +549,16 @@
 			let infofiche = icotakuDom.getElementsByClassName('p info_fiche')[0]
 			let allInfos = infofiche.querySelectorAll('b')
 			let valuesIterator = allInfos.values()
-			let origin = null
-			let category = null
-			let episodeNumber = null
-			let episodeDuration = null
-			let targetedAudience = null
-			let firstDiffusionQuarter = null
-			let yearProduction = null
-			let diffusionStatus = null
-			// let animationStudio = null
-			// let summary = null
+			
 			let next = valuesIterator.next()
 			while (!next.done) {
 				if (next.value && next.value.textContent) {
 					let row = next.value
 					let rowText = next.value.textContent
 					if (rowText.includes(infoContains)) {
+						if(row.nextElementSibling){
+							return row.nextElementSibling.textContent.trim()	
+						}
 						return row.nextSibling.textContent.trim()
 					}
 

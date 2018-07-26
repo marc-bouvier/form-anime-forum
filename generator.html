@@ -525,9 +525,20 @@
 							self.genre = icotakuAnime.dom.getElementById('id_genre').textContent.trim()
 							self.theme = icotakuAnime.dom.getElementById('id_theme').textContent.trim()
 							self.targetedAudience = loadFromIcotaku(icotakuAnime.dom, 'Public visé')
-							self.episodeNumber = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Nombre d\'épisode'))
-							self.episodeDuration = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Durée d\'un épisode')
-								.replace('mins', '').trim())
+							let category = self.category.trim()
+							if (category === 'TV' || category === 'TV Spécial') {
+								self.episodeNumber = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Nombre d\'épisode'))
+								self.episodeDuration = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Durée d\'un épisode')
+									.replace('mins', '').trim())
+							} else if (category === 'Film') {
+								self.episodeNumber = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Nombre de film'))
+								self.episodeDuration = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Durée d\'un film')
+									.replace('mins', '').trim())
+							} else if (category === 'OAV') {
+								self.episodeNumber = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Nombre d\'OAV'))
+								self.episodeDuration = parseInt(loadFromIcotaku(icotakuAnime.dom, 'Durée d\'un OAV')
+									.replace('mins', '').trim())
+							}
 							self.firstDiffusionQuarter = loadFromIcotaku(icotakuAnime.dom, 'Saison')
 							self.yearProduction = loadFromIcotaku(icotakuAnime.dom, 'Année de diffusion')
 							self.diffusionStatus = loadFromIcotaku(icotakuAnime.dom, 'Diffusion')
@@ -542,25 +553,17 @@
 			let infofiche = icotakuDom.getElementsByClassName('p info_fiche')[0]
 			let allInfos = infofiche.querySelectorAll('b')
 			let valuesIterator = allInfos.values()
-			let origin = null
-			let category = null
-			let episodeNumber = null
-			let episodeDuration = null
-			let targetedAudience = null
-			let firstDiffusionQuarter = null
-			let yearProduction = null
-			let diffusionStatus = null
-			// let animationStudio = null
-			// let summary = null
 			let next = valuesIterator.next()
 			while (!next.done) {
 				if (next.value && next.value.textContent) {
 					let row = next.value
 					let rowText = next.value.textContent
 					if (rowText.includes(infoContains)) {
+						if(row.nextElementSibling){
+							return row.nextElementSibling.textContent.trim()	
+						}
 						return row.nextSibling.textContent.trim()
 					}
-
 				}
 				next = valuesIterator.next()
 			}

@@ -1,13 +1,13 @@
 # form-anime-forum
 Générateur d'html pour inclure dans un forum
 
-* generator.html : nouveau générateur utilisant vue.js sans php
+* generator.html : générateur utilisant vue.js sans php
 * proxy.php : proxy permettant de charger une page d'un site externe pour contourner [les limitations CORS](https://fr.wikipedia.org/wiki/Cross-origin_resource_sharing)
 
 ## TODO
-* gestion du multicompte pour uptobox
+* Gestion du multicompte pour Uptobox
 * Loader pour MyAnimeListe.com afin de récupérer l'image et le score.
-* Gestion du masquage en fonction du service de simulcast (```<adn></adn> / <waka></waka> / <crunch></crunch> / <netflix></netflix> / <amazon></amazon>```) a ajouter après et avant [hide] / [/hide]
+* Précharger les services de Simulcast via Icotaku (Champ "Licence VOD")
 * Isoler le Javascript
 
 ## Lancer localement avec Docker

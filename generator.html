@@ -303,54 +303,55 @@
 							<b>Studio(s) d'animation</b> : {{formatValue(animationStudio)}}
 							<br/>
 							<br/>
-							<b>Histoire</b> : {{formatValue(summary)}}
+							<b>Histoire</b> :
+							<div v-html="formatValue(summary)"></div>
 						</p>
 					</div>
-						<div>[hide]{{simucastOpeningTags}}</div>
-						<table id="download">
+					<div>[hide]{{simucastOpeningTags}}</div>
+					<table id="download">
+						<tbody>
+							<thead>
+								<tr>
+									<td></td>
+									<td>Score</td>
+									<td>LD</td>
+									<td>720p</td>
+									<td>1080p</td>
+									<td>Premium</td>
+								</tr>
+							</thead>
 							<tbody>
-								<thead>
-									<tr>
-										<td></td>
-										<td>Score</td>
-										<td>LD</td>
-										<td>720p</td>
-										<td>1080p</td>
-										<td>Premium</td>
-									</tr>
-								</thead>
-								<tbody>
-									<tr v-for="season in saisons" class="bold">
-										<td>{{formatValue(season.label)}}</td>
-										<td class="score">{{formatValue(season.score)}}</td>
-										<td>
-											<a v-if="season.linkLowDef" target="_blank" v-bind:href="parseLink(season.linkLowDef)">
-												<img src="../uploads/ressources/uptobox.png">
-											</a>
-											<template v-else>Indisponible</template>
-										</td>
-										<td>
-											<a v-if="season.link720p" target="_blank" v-bind:href="parseLink(season.link720p)">
-												<img src="../uploads/ressources/uptobox.png">
-											</a>
-											<template v-else>Indisponible</template>
-										</td>
-										<td>
-											<a v-if="season.link1080p" target="_blank" v-bind:href="parseLink(season.link1080p)">
-												<img src="../uploads/ressources/uptobox.png">
-											</a>
-											<template v-else>Indisponible</template>
-										</td>
-										<td>
-											<a v-if="season.linkPremium" target="_blank" v-bind:href="parseLink(season.linkPremium)">
-												<img src="../uploads/ressources/uptobox.png">
-											</a>
-											<template v-else>Indisponible</template>
-										</td>
-									</tr>
-								</tbody>
-						</table>
-						<div>{{simucastClosingTags}}[/hide]</div>
+								<tr v-for="season in saisons" class="bold">
+									<td>{{formatValue(season.label)}}</td>
+									<td class="score">{{formatValue(season.score)}}</td>
+									<td>
+										<a v-if="season.linkLowDef" target="_blank" v-bind:href="parseLink(season.linkLowDef)">
+											<img src="../uploads/ressources/uptobox.png">
+										</a>
+										<template v-else>Indisponible</template>
+									</td>
+									<td>
+										<a v-if="season.link720p" target="_blank" v-bind:href="parseLink(season.link720p)">
+											<img src="../uploads/ressources/uptobox.png">
+										</a>
+										<template v-else>Indisponible</template>
+									</td>
+									<td>
+										<a v-if="season.link1080p" target="_blank" v-bind:href="parseLink(season.link1080p)">
+											<img src="../uploads/ressources/uptobox.png">
+										</a>
+										<template v-else>Indisponible</template>
+									</td>
+									<td>
+										<a v-if="season.linkPremium" target="_blank" v-bind:href="parseLink(season.linkPremium)">
+											<img src="../uploads/ressources/uptobox.png">
+										</a>
+										<template v-else>Indisponible</template>
+									</td>
+								</tr>
+							</tbody>
+					</table>
+					<div>{{simucastClosingTags}}[/hide]</div>
 				</div>
 			</div>
 		</div>
@@ -455,12 +456,12 @@
 				},
 				checkedSimucasts: ['download']
 			},
-			computed:{
-				simucastOpeningTags(){
-					return this.checkedSimucasts.map(it=>'<'+it+'>').join('')
+			computed: {
+				simucastOpeningTags() {
+					return this.checkedSimucasts.map(it => '<' + it + '>').join('')
 				},
-				simucastClosingTags(){
-					return this.checkedSimucasts.slice().reverse().map(it=>'</'+it+'>').join('')
+				simucastClosingTags() {
+					return this.checkedSimucasts.slice().reverse().map(it => '</' + it + '>').join('')
 				}
 			},
 			methods: {
@@ -531,6 +532,7 @@
 							self.yearProduction = loadFromIcotaku(icotakuAnime.dom, 'Année de diffusion')
 							self.diffusionStatus = loadFromIcotaku(icotakuAnime.dom, 'Diffusion')
 							self.animationStudio = loadFromIcotaku(icotakuAnime.dom, 'Studio(s) d\'animation')
+							self.summary = loadStoryFromIcotakuDom(icotakuAnime.dom)
 						})
 				},
 			}
@@ -561,6 +563,23 @@
 
 				}
 				next = valuesIterator.next()
+			}
+			return null
+		}
+
+		function loadStoryFromIcotakuDom(icotakuDom) {
+			let i = 0
+			let histoireDom = null
+			let found = false;
+			let h2s = icotakuDom.getElementsByTagName('h2')
+
+			while (i < h2s.length && !found) {
+				let titleDom = h2s[i]
+				let rowText = titleDom.textContent
+				if (rowText.includes('Histoire')) {
+					return titleDom.nextElementSibling.textContent.replace('\n', '<br/>')
+				}
+				i = i + 1
 			}
 			return null
 		}

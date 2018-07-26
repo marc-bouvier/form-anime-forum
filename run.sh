@@ -1,0 +1,1 @@
+docker build -t generator-anime . && docker run  -p 81:80 generator-anime

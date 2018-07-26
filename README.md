@@ -12,7 +12,14 @@ Générateur d'html pour inclure dans un forum
 
 ## Lancer localement avec Docker
 Pour éviter d'avoir à installer PHP, il est possible de lancer le projet avec docker.
+
 Prérequis : avoir docker installé.
+
+```
+./run.sh
+```
+
+Détail du script.
 
 Se positionner dans la racine du projet. L'image Docker est décrite par le fichier Dockerfile.
 Celui-ci se base sur PHP avec Apache 2. Elle se contente de copier les fichiers du projet dans 
@@ -34,7 +41,7 @@ Il faut construire l'image à chaque fois qu'une modification est faite.
 
 Lancer l'image dans un conteneur.
 ```
-> docker run generator-anime -p81:80
+> docker run -p 81:80 generator-anime 
 AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
 AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
 [Thu May 10 07:39:11.699733 2018] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.10 (Debian) PHP/7.0.30 configured --resuming normal operations

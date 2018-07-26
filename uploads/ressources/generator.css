@@ -1,263 +1,301 @@
 body {
-	font-family: Roboto;
-	color: #919baf;
-	font-size: 14px !important;
-	line-height: 18px;
-	background: #1c1e31 url(../uploads/ressources/bg.png) no-repeat fixed 100% 0;
+   font-family: Roboto;
+   color: #919baf;
+   font-size: 14px !important;
+   line-height: 18px;
+   background: #1c1e31 url(bg.png) no-repeat fixed 100% 0;
 }
-input, select, textarea {
-	width: 450px;
-	margin: 0 0 0 10px;
+select, textarea {
+   width: 450px;
+   max-width: 450px;
+   margin: 0 0 0 10px;
+}
+input {
+   width: 444px;
+   margin: 0 0 0 10px;
 }
 input#ifended {
-	width: auto;
+   width: auto;
 }
 select {
-	width: 456px;
+   width: 456px;
 }
 label {
-	width: 250px;
-	margin: 5px 5px;
+   width: 250px;
+   margin: 5px 5px;
 }
 code {
-	color: #fff;
+   color: #fff;
 }
 button {
-	padding: 5px;
-	font-weight: 400;
-	border-radius: 5px;
-	border: 1px solid #29bdc6;
-	background-color: rgba(41,189,198,0.102);
-	color: #ffffff;
-	transition: 0.1s all linear;
-	width: 8%;
-	margin: 5px;
-	box-shadow: 0px 0px 4px 0px #29bdc6;
+   padding: 5px;
+   font-weight: 400;
+   border-radius: 5px;
+   border: 1px solid #29bdc6;
+   background-color: rgba(41,189,198,0.102);
+   color: #ffffff;
+   transition: 0.1s all linear;
+   width: 8%;
+   margin: 5px;
+   box-shadow: 0px 0px 4px 0px #29bdc6;
 }
 fieldset {
-  position: relative;
+   position: relative;
 }
 button:hover {
-	color: #29bdc6;
+   color: #29bdc6;
 }
 hr {
-	color: #a4aac1;
-	size: 2px;
+   border: 0;
+   height: 1px;
+   background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(120, 120, 120, 0.75), rgba(0, 0, 0, 0));
+   margin: 25px 0 25px 0;
 }
 pre {
-	margin: 0;
+   margin: 0;
 }
 #animeData {
-	display: flex;
+   display: flex;
 }
 #formRender {
-	width: 50%;
-}
-#previewRender {
-	width: 50%;
-}
-#formRender {
-	width: 50%;
-	text-align: center;
-}
-#formRender .form {
-	background-color: rgba(46,50,60,0.85);
-	border: 1px solid #3a3d47;
-	border-bottom-width: 0px;
-	border-radius: 5px 5px 0 0;
-}
-#formRender .formhistory {
-	background-color: rgba(46,50,60,0.85);
-	border: 1px solid #3a3d47;
-	border-top-width: 0px;
-	border-bottom-width: 0px;
-	border-radius: 0 0 0 0;
-}
-#formRender .formSeason {
-	background-color: rgba(46,50,60,0.85);
-	border: 1px solid #3a3d47;
-	border-top-width: 0px;
-	border-radius: 0 0 5px 5px;
-}
-#formRender br {
-	display: block;
-}
-#formRender th {
-	width: 200px;
-	padding-left: 10px;
+   width: 50%;
 }
 #form {
-	margin-left: 100px;
-	padding-right: 100px;
+   margin-left: 100px;
+   padding-right: 100px;
+}
+#formRender .form {
+   background-color: rgba(46,50,60,0.85);
+   border: 1px solid #3a3d47;
+   border-bottom-width: 0px;
+   border-radius: 5px 5px 0 0;
+}
+#formRender .formhistory {
+   background-color: rgba(46,50,60,0.85);
+   border: 1px solid #3a3d47;
+   border-top-width: 0px;
+   border-bottom-width: 0px;
+   border-radius: 0 0 0 0;
+}
+#formRender .formSeason {
+   background-color: rgba(46,50,60,0.85);
+   border: 1px solid #3a3d47;
+   border-top-width: 0px;
+   border-radius: 0 0 5px 5px;
+}
+#formRender .form {
+   background-color: rgba(46,50,60,0.85);
+   border: 1px solid #3a3d47;
+   border-bottom-width: 0px;
+   border-radius: 5px 5px 0 0;
+}
+#formRender h2 {
+   text-align: center;
+}
+#formRender br {
+   display: block;
+}
+#formRender th {
+   width: 200px;
+   padding-left: 10px;
+}
+#formRender [type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
+   width: 3em;
+}
+#formRender label.simulcast {
+   position: relative;
+   cursor: pointer;
+   text-align: left;
+}
+#formRender .seasons {
+   text-align: center;
 }
 #previewRender {
-	width: 50%;
-	text-align: center;
-	margin-right: 100px
+   width: 50%;
+   text-align: center;
+   margin-right: 100px
 }
 #preview {
-	background-color: rgba(46,50,60,0.85);
-	border: 1px solid #3a3d47;
-	border-radius: 5px;
-	padding: 10px 15px;
-	line-height: 1.6;
+   background-color: rgba(46,50,60,0.85);
+   border: 1px solid #3a3d47;
+   border-radius: 5px;
+   padding: 10px 15px;
+   line-height: 1.6;
 }
 .animeCode {
-	text-align: center;
+   text-align: center;
 }
 #generatedHtml {
-	text-align: left;
-	margin: 10px 0 0 100px;
-	background: #23262d;
-	border-left: 4px solid #3d404a;
-	padding: 15px;
-	width: 87%;
-	height: 270px;
-	overflow: auto;
+   text-align: left;
+   margin: 10px 0 0 100px;
+   background: #23262d;
+   border-left: 4px solid #3d404a;
+   padding: 15px;
+   width: 87%;
+   height: 270px;
+   overflow: auto;
 }
 
 /* Template for Anime sheet */
 
-#previewRender #complements  {
-	float: left;
-	padding: 60px 0 0 0;
+#previewRender #complements   {
+   float: left;
+   padding: 60px 0 0 0;
 }
-#previewRender .affiche img {   
-	width: 225px !important;
-	height: 330px !important;
-  	box-shadow: 1px 1px 12px #000;
+#previewRender .affiche img {    
+   width: 225px !important;
+   height: 330px !important;
+   box-shadow: 1px 1px 12px #000;
 }
 #previewRender #info {
-	text-align: center;
-	padding: 0 0 50px 0;
-	margin: 0 0 0 250px;
+   text-align: center;
+   padding: 0 0 50px 0;
+   margin: 0 0 0 250px;
 }
 #previewRender #info span {
-	font-size: 18px;
+   font-size: 18px;
 }
 #previewRender table {
-	width: 100%;
+   width: 100%;
 }
 #previewRender #download td {
-	text-align: center;
-	width: 16%;
+   text-align: center;
+   width: 16%;
 }
 #previewRender .bold {
-	font-weight: bold;
+   font-weight: bold;
 }
 #previewRender .score {
-	font-size: 16px;
+   font-size: 16px;
 }
 #previewRender #download td img {
-    width: 60%;
-    height: 60%;
+   width: 60%;
+   height: 60%;
+}
+#previewRender .simulcast {
+   background: #5e95bc;
+   padding: 5px 5px 5px 45px;
+   border-radius: 2px;
+   position: relative;
+   margin-bottom: 10px;
+   color: #fff;
+   text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
+}
+#previewRender .simulcastinline {
+   margin: 0;
+   padding: 0;
+   list-style: none;
+}
+#previewRender .simulcastoff {
+   display: none;
 }
 
 @media screen and (max-width: 1800px) {
 input, select, textarea {
-	width: 350px;
-	margin: 0 0 0 10px;
+   width: 350px;
+   margin: 0 0 0 10px;
 }
 select {
-	width: 356px;
+   width: 356px;
 }
 }
 @media screen and (max-width: 1600px) {
 input, select, textarea {
-	width: 250px;
-	margin: 0 0 0 10px;
+   width: 250px;
+   margin: 0 0 0 10px;
 }
 select {
-	width: 256px;
+   width: 256px;
 }
 #generatedHtml {
-	width: 85%;
+   width: 85%;
 }
 }
 @media screen and (max-width: 1300px) {
 input, select, textarea {
-	width: 260px;
-	margin: 0 0 0 10px;
+   width: 260px;
+   margin: 0 0 0 10px;
 }
 select {
-	width: 266px;
+   width: 266px;
 }
 #generatedHtml {
-	width: 94%;
-	margin: 10px 0 0 10px;
+   width: 94%;
+   margin: 10px 0 0 10px;
 }
 #formRender {
-	text-align: normal;
+   text-align: normal;
 }
 #form {
-    margin-left: 10px;
-    padding-right: 10px;
+   margin-left: 10px;
+   padding-right: 10px;
 }
 input#ifended {
-	width: auto;
+   width: auto;
 }
 #previewRender {
-    margin-right: 10px;
+   margin-right: 10px;
 }
 #previewRender #complements {
-	float: none;
-	padding: 20px 0 0 0;
-	margin: 0 auto 10px auto;
-	width: 225px;
+   float: none;
+   padding: 20px 0 0 0;
+   margin: 0 auto 10px auto;
+   width: 225px;
 }
 #previewRender .affiche img {
-	box-shadow: 1px 1px 12px #000;
+   box-shadow: 1px 1px 12px #000;
 }
 #previewRender #info {
-	margin: 0 0 0 0;
-	padding: 0 0 0 0;
+   margin: 0 0 0 0;
+   padding: 0 0 0 0;
 }
 #previewRender table {
-	font-size: smaller;
+   font-size: smaller;
 }
 }
 @media screen and (max-width: 900px) {
 input, select, textarea {
-	width: 150px;
-	margin: 0 0 0 10px;
+   width: 150px;
+   margin: 0 0 0 10px;
 }
 select {
-	width: 156px;
+   width: 156px;
 }
 #generatedHtml {
-	width: 94%;
-	margin: 10px 0 0 10px;
+   width: 94%;
+   margin: 10px 0 0 10px;
 }
 #formRender {
-	text-align: normal;
+   text-align: normal;
 }
 #form {
-    margin-left: 10px;
-    padding-right: 10px;
+   margin-left: 10px;
+   padding-right: 10px;
 }
 input#ifended {
-	width: auto;
+   width: auto;
 }
 td.diff {
-	font-size: 12px;
+   font-size: 12px;
 }
 #previewRender {
-    margin-right: 10px;
+   margin-right: 10px;
 }
 #previewRender #complements {
-	float: none;
-	padding: 20px 0 0 0;
-	margin: 0 auto 10px auto;
-	width: 225px;
+   float: none;
+   padding: 20px 0 0 0;
+   margin: 0 auto 10px auto;
+   width: 225px;
 }
 #previewRender .affiche img {
-	box-shadow: 1px 1px 12px #000;
+   box-shadow: 1px 1px 12px #000;
 }
 #previewRender #info {
-	margin: 0 0 0 0;
-	padding: 0 0 0 0;
+   margin: 0 0 0 0;
+   padding: 0 0 0 0;
 }
 #previewRender table {
-	font-size: smaller;
+   font-size: smaller;
 }
 }

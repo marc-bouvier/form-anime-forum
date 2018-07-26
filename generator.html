@@ -6,6 +6,7 @@
 	<title>Otaku Family - Fiches</title>
 	<link rel="stylesheet" type="text/css" href="../uploads/ressources/generator.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i">
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 	<link rel="shortcut icon" href="../uploads/ressources/favicon.ico">
 	<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
@@ -45,7 +46,6 @@
 									<input type="text" v-model="title" />
 								</td>
 							</tr>
-
 							<tr>
 								<th>
 									<label>Image de l'anime</label>
@@ -166,7 +166,6 @@
 								<th>
 									<label>Diffusion</label>
 								</th>
-
 								<td class="diff">
 									<select v-model="diffusionStatus">
 										<option value="Indisponible">Faites un choix</option>
@@ -185,17 +184,17 @@
 							</tr>
 							<tr>
 								<th>
-									<label>Simucast(s)</label>
+									<label>Simulcast(s)</label>
 								</th>
 								<td>
 									<table>
 										<tbody>
-											<tr v-for="(value, key) in simucast">
+											<tr v-for="(value, key) in simulcast">
 												<td>
-													<input type="checkbox" :id="key" :value="key" v-model="checkedSimucasts" style="width: 3em" />
+													<input type="checkbox" :id="key" :value="key" v-model="checkedSimulcasts" />
 												</td>
-												<td style="text-align: left">
-													<label :for="key">{{value}}</label>
+												<td>
+													<label class="simulcast" :for="key">{{value}}</label>
 												</td>
 											</tr>
 										</tbody>
@@ -257,8 +256,10 @@
 						</tbody>
 					</table>
 					<br/>
-					<button @click="addSeason">+</button>
-					<button @click="removeSeason">-</button>
+               <div class="seasons">
+						<button @click="addSeason">+</button>
+						<button @click="removeSeason">-</button>
+               </div>
 				</div>
 			</div>
 
@@ -272,7 +273,6 @@
 							<img v-bind:src="picture" v-bind:alt="title" />
 						</p>
 					</div>
-
 					<div id="info">
 						<p>
 							<span>
@@ -307,7 +307,9 @@
 							<div v-html="formatValue(summary)"></div>
 						</p>
 					</div>
-					<div>[hide]{{simucastOpeningTags}}</div>
+					<div class="simulcast">
+               	<ul class="fas fa-info-circle simulcastinline"> Contenu masquer: [hide]{{simulcastOpeningTags}}</ul>
+               </div>
 					<table id="download">
 						<tbody>
 							<thead>
@@ -326,32 +328,32 @@
 									<td class="score">{{formatValue(season.score)}}</td>
 									<td>
 										<a v-if="season.linkLowDef" target="_blank" v-bind:href="parseLink(season.linkLowDef)">
-											<img src="../uploads/ressources/uptobox.png">
+											<img src="../uploads/ressources/logo_uptobox.png">
 										</a>
 										<template v-else>Indisponible</template>
 									</td>
 									<td>
 										<a v-if="season.link720p" target="_blank" v-bind:href="parseLink(season.link720p)">
-											<img src="../uploads/ressources/uptobox.png">
+											<img src="../uploads/ressources/logo_uptobox.png">
 										</a>
 										<template v-else>Indisponible</template>
 									</td>
 									<td>
 										<a v-if="season.link1080p" target="_blank" v-bind:href="parseLink(season.link1080p)">
-											<img src="../uploads/ressources/uptobox.png">
+											<img src="../uploads/ressources/logo_uptobox.png">
 										</a>
 										<template v-else>Indisponible</template>
 									</td>
 									<td>
 										<a v-if="season.linkPremium" target="_blank" v-bind:href="parseLink(season.linkPremium)">
-											<img src="../uploads/ressources/uptobox.png">
+											<img src="../uploads/ressources/logo_uptobox.png">
 										</a>
 										<template v-else>Indisponible</template>
 									</td>
 								</tr>
 							</tbody>
 					</table>
-					<div>{{simucastClosingTags}}[/hide]</div>
+					<div class="simulcastoff">{{simulcastClosingTags}}[/hide]</div>
 				</div>
 			</div>
 		</div>
@@ -391,7 +393,7 @@
 			&lt;b&gt;Histoire&lt;/b&gt; : {{formatValue(summary)}}
 		&lt;/p&gt;
 	&lt;/div&gt;
-	[hide]{{simucastOpeningTags}}
+	[hide]{{simulcastOpeningTags}}
 		&lt;table id="download"&gt;
 			&lt;tbody&gt;
 				&lt;tr&gt;
@@ -405,15 +407,15 @@
 				<template v-for="season in saisons">&lt;tr class="bold"&gt;
 					&lt;td&gt;{{formatValue(season.label)}}&lt;/td&gt;
 					&lt;td class="score"&gt;{{formatValue(season.score)}}&lt;/td&gt;
-					&lt;td&gt;<template v-if="season.linkLowDef">&lt;a target="_blank" href="{{parseLink(season.linkLowDef)}}" ></span>"&gt;&lt;img src="../uploads/ressources/uptobox.png"&gt;&lt;/a&gt;</template><template v-else>Indisponible</template>&lt;/td&gt;
-					&lt;td&gt;<template v-if="season.link720p">&lt;a target="_blank" href="{{parseLink(season.link720p)}}" ></span>"&gt;&lt;img src="../uploads/ressources/uptobox.png"&gt;&lt;/a&gt;</template><template v-else>Indisponible</template>&lt;/td&gt;
-					&lt;td&gt;<template v-if="season.link1080p">&lt;a target="_blank" href="{{parseLink(season.link1080p)}}" ></span>"&gt;&lt;img src="../uploads/ressources/uptobox.png"&gt;&lt;/a&gt;</template><template v-else>Indisponible</template>&lt;/td&gt;
-					&lt;td&gt;<template v-if="season.linkPremium">&lt;a target="_blank" href="{{parseLink(season.linkPremium)}}" ></span>"&gt;&lt;img src="../uploads/ressources/uptobox.png"&gt;&lt;/a&gt;</template><template v-else>Indisponible</template>&lt;/td&gt;
+					&lt;td&gt;<template v-if="season.linkLowDef">&lt;a target="_blank" href="{{parseLink(season.linkLowDef)}}" ></span>"&gt;&lt;img src="../uploads/ressources/logo_uptobox.png"&gt;&lt;/a&gt;</template><template v-else>Indisponible</template>&lt;/td&gt;
+					&lt;td&gt;<template v-if="season.link720p">&lt;a target="_blank" href="{{parseLink(season.link720p)}}" ></span>"&gt;&lt;img src="../uploads/ressources/logo_uptobox.png"&gt;&lt;/a&gt;</template><template v-else>Indisponible</template>&lt;/td&gt;
+					&lt;td&gt;<template v-if="season.link1080p">&lt;a target="_blank" href="{{parseLink(season.link1080p)}}" ></span>"&gt;&lt;img src="../uploads/ressources/logo_uptobox.png"&gt;&lt;/a&gt;</template><template v-else>Indisponible</template>&lt;/td&gt;
+					&lt;td&gt;<template v-if="season.linkPremium">&lt;a target="_blank" href="{{parseLink(season.linkPremium)}}" ></span>"&gt;&lt;img src="../uploads/ressources/logo_uptobox.png"&gt;&lt;/a&gt;</template><template v-else>Indisponible</template>&lt;/td&gt;
 				&lt;/tr&gt;
 				</template>
 			&lt;/tbody&gt;
 		&lt;/table&gt;
-		{{simucastClosingTags}}[/hide]
+		{{simulcastClosingTags}}[/hide]
 &lt;/div&gt;</code></pre>
 			</div>
 		</div>
@@ -446,7 +448,7 @@
 					linkPremium: null
 				}],
 				icotakuUrl: null,
-				simucast: {
+				simulcast: {
 					'download': 'Téléchargement',
 					'adn': 'Anime Digital Network',
 					'waka': 'Wakanim',
@@ -454,14 +456,14 @@
 					'crunch': 'Crunchyroll',
 					'amazon': 'Amazon Prime',
 				},
-				checkedSimucasts: ['download']
+				checkedSimulcasts: ['download']
 			},
 			computed: {
-				simucastOpeningTags() {
-					return this.checkedSimucasts.map(it => '<' + it + '>').join('')
+				simulcastOpeningTags() {
+					return this.checkedSimulcasts.map(it => '<' + it + '>').join('')
 				},
-				simucastClosingTags() {
-					return this.checkedSimucasts.slice().reverse().map(it => '</' + it + '>').join('')
+				simulcastClosingTags() {
+					return this.checkedSimulcasts.slice().reverse().map(it => '</' + it + '>').join('')
 				}
 			},
 			methods: {
@@ -548,7 +550,7 @@
 				},
 			}
 		})
-
+      
 		function loadFromIcotaku(icotakuDom, infoContains) {
 			let infofiche = icotakuDom.getElementsByClassName('p info_fiche')[0]
 			let allInfos = infofiche.querySelectorAll('b')
@@ -569,13 +571,12 @@
 			}
 			return null
 		}
-
+      
 		function loadStoryFromIcotakuDom(icotakuDom) {
 			let i = 0
 			let histoireDom = null
 			let found = false;
 			let h2s = icotakuDom.getElementsByTagName('h2')
-
 			while (i < h2s.length && !found) {
 				let titleDom = h2s[i]
 				let rowText = titleDom.textContent

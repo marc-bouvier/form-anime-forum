@@ -14,6 +14,7 @@ Générateur d'html pour inclure dans un forum
 Pour éviter d'avoir à installer PHP, il est possible de lancer le projet avec docker.
 
 Prérequis : avoir docker installé.
+La première fois : `chmod +x run.sh`
 
 ```
 ./run.sh

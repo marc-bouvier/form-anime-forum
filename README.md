@@ -19,7 +19,7 @@ Celui-ci se base sur PHP avec Apache 2. Elle se contente de copier les fichiers 
 le dossier /var/www du conteneur docker.
 
 Construire l'image docker. 
-`̀``
+```
 > docker build -t generator-anime .
 Sending build context to Docker daemon  9.603MB
 Step 1/2 : FROM php:7.0-apache

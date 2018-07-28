@@ -20,7 +20,7 @@
 
 		<!-- Loader -->
 
-		<div class="animeCode">
+		<div id="animeLoader">
 			<h2>Loader</h2>
 			<input v-model="icotakuUrl" />
 			<button @click="initFromIcotaku(icotakuUrl)">Charger depuis Icotaku</button>
@@ -358,7 +358,7 @@
 
 		<!-- Code -->
 
-		<div class="animeCode">
+		<div id="animeCode">
 			<h2>Code HTML</h2>
 			<div id="code">
 				<button id="copyCode" class="btnCopy" data-clipboard-target="#generatedHtml">Copier</button>

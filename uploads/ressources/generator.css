@@ -17,9 +17,6 @@ input {
 input#ifended {
    width: auto;
 }
-select {
-   width: 456px;
-}
 label {
    width: 250px;
    margin: 5px 5px;
@@ -39,9 +36,6 @@ button {
    margin: 5px;
    box-shadow: 0px 0px 4px 0px #29bdc6;
 }
-fieldset {
-   position: relative;
-}
 button:hover {
    color: #29bdc6;
 }
@@ -51,8 +45,8 @@ hr {
    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(120, 120, 120, 0.75), rgba(0, 0, 0, 0));
    margin: 25px 0 25px 0;
 }
-pre {
-   margin: 0;
+#animeLoader {
+   text-align: center;
 }
 #animeData {
    display: flex;
@@ -70,24 +64,11 @@ pre {
    border-bottom-width: 0px;
    border-radius: 5px 5px 0 0;
 }
-#formRender .formhistory {
-   background-color: rgba(46,50,60,0.85);
-   border: 1px solid #3a3d47;
-   border-top-width: 0px;
-   border-bottom-width: 0px;
-   border-radius: 0 0 0 0;
-}
 #formRender .formSeason {
    background-color: rgba(46,50,60,0.85);
    border: 1px solid #3a3d47;
    border-top-width: 0px;
    border-radius: 0 0 5px 5px;
-}
-#formRender .form {
-   background-color: rgba(46,50,60,0.85);
-   border: 1px solid #3a3d47;
-   border-bottom-width: 0px;
-   border-radius: 5px 5px 0 0;
 }
 #formRender h2 {
    text-align: center;
@@ -101,12 +82,10 @@ pre {
 }
 #formRender [type="checkbox"]:not(:checked),
 [type="checkbox"]:checked {
-   width: 3em;
+   width: 3px;
 }
 #formRender label.simulcast {
-   position: relative;
    cursor: pointer;
-   text-align: left;
 }
 #formRender .seasons {
    text-align: center;
@@ -123,7 +102,7 @@ pre {
    padding: 10px 15px;
    line-height: 1.6;
 }
-.animeCode {
+#animeCode {
    text-align: center;
 }
 #generatedHtml {
@@ -192,8 +171,9 @@ pre {
 }
 
 @media screen and (max-width: 1800px) {
-input, select, textarea {
+input, textarea {
    width: 350px;
+   max-width: 350px;
    margin: 0 0 0 10px;
 }
 select {
@@ -201,8 +181,9 @@ select {
 }
 }
 @media screen and (max-width: 1600px) {
-input, select, textarea {
+input, textarea {
    width: 250px;
+	max-width: 250px;
    margin: 0 0 0 10px;
 }
 select {
@@ -213,26 +194,17 @@ select {
 }
 }
 @media screen and (max-width: 1300px) {
-input, select, textarea {
+input, textarea {
    width: 260px;
    margin: 0 0 0 10px;
-}
-select {
-   width: 266px;
 }
 #generatedHtml {
    width: 94%;
    margin: 10px 0 0 10px;
 }
-#formRender {
-   text-align: normal;
-}
 #form {
    margin-left: 10px;
    padding-right: 10px;
-}
-input#ifended {
-   width: auto;
 }
 #previewRender {
    margin-right: 10px;
@@ -255,12 +227,13 @@ input#ifended {
 }
 }
 @media screen and (max-width: 900px) {
-input, select, textarea {
-   width: 150px;
+input, textarea {
+   width: 160px;
+	max-width: 160px;
    margin: 0 0 0 10px;
 }
 select {
-   width: 156px;
+   width: 166px;
 }
 #generatedHtml {
    width: 94%;
@@ -273,29 +246,7 @@ select {
    margin-left: 10px;
    padding-right: 10px;
 }
-input#ifended {
-   width: auto;
-}
-td.diff {
-   font-size: 12px;
-}
 #previewRender {
    margin-right: 10px;
-}
-#previewRender #complements {
-   float: none;
-   padding: 20px 0 0 0;
-   margin: 0 auto 10px auto;
-   width: 225px;
-}
-#previewRender .affiche img {
-   box-shadow: 1px 1px 12px #000;
-}
-#previewRender #info {
-   margin: 0 0 0 0;
-   padding: 0 0 0 0;
-}
-#previewRender table {
-   font-size: smaller;
 }
 }

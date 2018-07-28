@@ -182,6 +182,14 @@
 									<input type="text" v-model="animationStudio" />
 								</td>
 							</tr>
+							<tr class="formhistory">
+								<th>
+									<label>Histoire</label>
+								</th>
+								<td>
+									<textarea v-model="summary"></textarea>
+								</td>
+							</tr>                 
 							<tr>
 								<th>
 									<label>Simulcast(s)</label>
@@ -199,18 +207,6 @@
 											</tr>
 										</tbody>
 									</table>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-					<table class="formhistory">
-						<tbody>
-							<tr>
-								<th>
-									<label>Histoire</label>
-								</th>
-								<td>
-									<textarea v-model="summary"></textarea>
 								</td>
 							</tr>
 						</tbody>
@@ -307,8 +303,8 @@
 						</p>
 					</div>
 					<div class="simulcast">
-               	<ul class="fas fa-info-circle simulcastinline"> Contenu masquer: [hide]{{simulcastOpeningTags}}</ul>
-               </div>
+						<ul class="fas fa-info-circle simulcastinline"> Contenu masquer: [hide]{{simulcastOpeningTags}}</ul>
+					</div>
 					<table id="download">
 						<tbody>
 							<thead>

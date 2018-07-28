@@ -5,13 +5,13 @@ body {
    line-height: 18px;
    background: #1c1e31 url(bg.png) no-repeat fixed 100% 0;
 }
-select, textarea {
+input, textarea {
    width: 450px;
    max-width: 450px;
    margin: 0 0 0 10px;
 }
-input {
-   width: 444px;
+select {
+   width: 456px;
    margin: 0 0 0 10px;
 }
 input#ifended {
@@ -183,7 +183,7 @@ select {
 @media screen and (max-width: 1600px) {
 input, textarea {
    width: 250px;
-	max-width: 250px;
+   max-width: 250px;
    margin: 0 0 0 10px;
 }
 select {
@@ -229,7 +229,7 @@ input, textarea {
 @media screen and (max-width: 900px) {
 input, textarea {
    width: 160px;
-	max-width: 160px;
+   max-width: 160px;
    margin: 0 0 0 10px;
 }
 select {

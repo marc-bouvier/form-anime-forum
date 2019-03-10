@@ -29,9 +29,10 @@ Remplaceer les valeur `"recupereCeTokenSurUptobox"` par des valeurs réelles
 * `acc_id` : numéro du compte défini dans le fichier `secret.php`. Par exemple : `1` pour OTF2
 * `uptobox_path` : chemin du dossier où lister les fichiers. Par exemple `//Animations Japonaise/Animes Lettre O/One Piece/One Piece - Saga 01 - East Blue/One Piece - Arc 01 - Romance Dawn`
 * `recursive` : (optionnel) permet de cherche les fichiers dans les sous dossiers. Désactivé par défaut. Par exemple : `true`
+* `direct` : (optionnel) calcule et affiche les liens de téléchargement direct. Désactivé par défaut. Par exemple : `true`
 
 ```
-http://domaine.truc/parser/parser.php?acc_id=1&recursive=true&uptobox_path=//Animations Japonaise/Animes Lettre O/One Piece/One Piece - Saga 01 - East Blue/One Piece - Arc 01 - Romance Dawn
+http://domaine.truc/parser/parser.php?acc_id=1&recursive=true&direct=true&uptobox_path=//Animations Japonaise/Animes Lettre O/One Piece/One Piece - Saga 01 - East Blue/One Piece - Arc 01 - Romance Dawn
 ```
 
 ## TODO

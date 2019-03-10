@@ -1,9 +1,9 @@
 <?php
 include "../secret.php";
 
-function listFiles($acc_id,$uptoboxPath,$recursive){
+function listFiles($acc_id,$uptoboxPath,$recursive,$directLinks){
     $userToken = userTokenFromSecret($acc_id);
-    return loadFolderFiles($userToken,$uptoboxPath,$recursive);
+    return loadFolderFiles($userToken,$uptoboxPath,$recursive,$directLinks);
 }
 
 function userTokenFromSecret($acc_id){
@@ -17,10 +17,10 @@ function loadFileLink($userToken,$fileCode){
         "file_code"=>$fileCode));
 
     $result = json_decode($api_result,true); 
-    return $result["data"]["dlLink"]    ;
+    return $result["data"]["dlLink"];
 }
 
-function loadFolderFiles($userToken,$uptoboxPath,$recursive){
+function loadFolderFiles($userToken,$uptoboxPath,$recursive,$directLinks){
 
     $api_result = CallAPI("GET","https://uptobox.com/api/user/files",array(
         "token"=>$userToken,
@@ -38,16 +38,20 @@ function loadFolderFiles($userToken,$uptoboxPath,$recursive){
         $linksResult = array();
         if(count($files)>0){
             foreach($files as $file){
-                $file["dlLink"] = loadFileLink($userToken,$file["file_code"]);
+                if($directLinks){
+                    $file["dlLink"] = loadFileLink($userToken,$file["file_code"]);
+                }
                 array_push($linksResult,$file);
             }            
         }
         if($recursive && count($folders)>0){
             foreach($folders as $folder){
                 // on récupère les fichiers des sous dossiers récursivement
-                $files = loadFolderFiles($userToken,$folder["fullPath"],$recursive);
+                $files = loadFolderFiles($userToken,$folder["fullPath"],$recursive,$directLinks);
                 foreach($files as $file){
-                    $file["dlLink"] = loadFileLink($userToken,$file["file_code"]);
+                    if($directLinks){
+                        $file["dlLink"] = loadFileLink($userToken,$file["file_code"]);
+                    }
                     array_push($linksResult,$file);
                 }            
             }

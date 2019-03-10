@@ -3,9 +3,9 @@
     <head>
         <meta charset="UTF-8">
         <title>Otaku Family - Liens</title>
-        <link rel="stylesheet" type="text/css" href="uploads//ressources/parser.css">
+        <link rel="stylesheet" type="text/css" href="/uploads/ressources/parser.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i">
-        <link rel="shortcut icon" href="uploads/ressources/favicon.ico">
+        <link rel="shortcut icon" href="/uploads/ressources/favicon.ico">
     </head>
     <body>
         <h2>Liens</h2>

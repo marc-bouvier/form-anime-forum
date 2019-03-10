@@ -4,6 +4,36 @@ Générateur d'html pour inclure dans un forum
 * generator.html : générateur utilisant vue.js sans php
 * proxy.php : proxy permettant de charger une page d'un site externe pour contourner [les limitations CORS](https://fr.wikipedia.org/wiki/Cross-origin_resource_sharing)
 
+## Configuration du parser
+
+Pour fonctionner, le parser doit lire un fichier `secret.php` qui contient les tokens des comptes utilisateur uptobox.
+Pour des raisons de confidentialité ce fichier n'est pas commit sur GIT.
+
+Il faut le créer : sur le serveur qui héberge l'application PHP.
+
+`secret.php`
+```php
+<?php
+// Confidentiel! A ne pas commit sur git!!!
+define("SECRET",  array(
+    "0"=>array("name"=>"OTF1","token"=>"recupereCeTokenSurUptobox"),
+    "1"=>array("name"=>"OTF2","token"=>"recupereCeTokenSurUptobox"),
+    "2"=>array("name"=>"Mazulis","token"=>"recupereCeTokenSurUptobox")));
+?>
+```
+
+Remplaceer les valeur `"recupereCeTokenSurUptobox"` par des valeurs réelles
+
+## Utilisation du parser
+
+* `acc_id` : numéro du compte défini dans le fichier `secret.php`. Par exemple : `1` pour OTF2
+* `uptobox_path` : chemin du dossier où lister les fichiers. Par exemple `//Animations Japonaise/Animes Lettre O/One Piece/One Piece - Saga 01 - East Blue/One Piece - Arc 01 - Romance Dawn`
+* `recursive` : (optionnel) permet de cherche les fichiers dans les sous dossiers. Désactivé par défaut. Par exemple : `true`
+
+```
+http://domaine.truc/parser/parser.php?acc_id=1&recursive=true&uptobox_path=//Animations Japonaise/Animes Lettre O/One Piece/One Piece - Saga 01 - East Blue/One Piece - Arc 01 - Romance Dawn
+```
+
 ## TODO
 * Gestion du multicompte pour Uptobox
 * Loader pour MyAnimeListe.com afin de récupérer l'image et le score.
